@@ -1,0 +1,81 @@
+{
+  "name": "@jalik/react-datetime-input",
+  "version": "0.1.0",
+  "description": "Date and time picker for React",
+  "esnext": "src/index.js",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "babel src -d dist",
+    "build-storybook": "build-storybook",
+    "clean": "rimraf dist",
+    "dev": "babel --watch src -d dist",
+    "lint": "eslint --ext js,jsx .",
+    "lint-fix": "eslint --fix --ext js,jsx .",
+    "prepare": "npm run clean && npm run build && npm run lint",
+    "prepublishOnly": "npm test",
+    "storybook": "start-storybook -p 6006",
+    "test": "jest --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jalik/react-datetime-input.git"
+  },
+  "keywords": [
+    "calendar",
+    "date",
+    "datetime",
+    "time",
+    "picker",
+    "input",
+    "react",
+    "form"
+  ],
+  "author": {
+    "name": "Karl Stein",
+    "email": "karl.stein.pro@gmail.com",
+    "url": "https://github.com/jalik"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jalik/react-datetime-input/issues"
+  },
+  "homepage": "https://github.com/jalik/react-datetime-input#readme",
+  "files": [
+    "/dist",
+    "/src"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.14.0",
+    "luxon": "^1.27.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/eslint-parser": "^7.14.4",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^27.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.0 || ^17.0.0"
+  }
+}

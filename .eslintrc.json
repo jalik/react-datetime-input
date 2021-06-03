@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "airbnb/hooks"
+  ],
+  "parser": "@babel/eslint-parser",
+  "plugins": [
+    "import",
+    "jest",
+    "jsx-a11y",
+    "react",
+    "react-hooks"
+  ]
+}
