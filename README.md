@@ -13,28 +13,19 @@ This lib allows you to add datetime inputs in your React applications with the f
 - Available in CJS and ESM (tree shakeable)
 - Multiple selection modes (year, month, day, time)
 - Support for min and max datetime
+- Support for custom day renderer
 - Customizable datetime format
 - Customizable view (locale, week numbers, timezone...)
 - Works like a normal input (onChange/value)
 - Based on Intl API to support any language (English, French, Chinese...)
 - Based on [luxon](https://moment.github.io/luxon/) for date and time manipulation
 
-**NOTICE : This only work with controlled components.**
-
-Some examples of use.
+**NOTICE : The code has been tested with controlled components only.**
 
 ![Calendar](docs/images/calendar_days_en-US.jpg)
 ![Calendar](docs/images/calendar_years_en-US.jpg)
 ![Calendar](docs/images/calendar_months_en-US.jpg)
 ![Calendar](docs/images/calendar_time_en-US.jpg)
-
-Support for different languages.
-
-![Calendar](docs/images/calendar_days_fr-FR.jpg)
-![Calendar](docs/images/calendar_days_hi.jpg)
-![Calendar](docs/images/calendar_days_ja.jpg)
-![Calendar](docs/images/calendar_days_ru.jpg)
-![Calendar](docs/images/calendar_days_zh.jpg)
 
 ## Quickstart
 
@@ -95,16 +86,30 @@ The default value is `D tt` (localized date and time).
 
 #### `locale: string`
 
-Allow to set the language of the calendar (based on the **Intl API**).  
-The default value is `navigator.language` if available.
+Set the locale to use when displaying dates, month... (based on the **Intl API**).  
+The default value is `navigator.language`.
+
+Example of different locales (`fr-FR`, `ru`, `zh`):
+
+![Calendar](docs/images/calendar_days_fr-FR.jpg)
+![Calendar](docs/images/calendar_days_ru.jpg)
+![Calendar](docs/images/calendar_days_zh.jpg)
 
 #### `max: string`
 
 Pass an ISO date string that is the maximal valid datetime.
 
+Example with `2021-06-09T23:59:59.000-10:00`:
+
+![Calendar](docs/images/calendar_days_max_en-US.jpg)
+
 #### `min: string`
 
 Pass an ISO date string that is the minimal valid datetime.
+
+Example with `2021-06-09T00:00:00.000-10:00`:
+
+![Calendar](docs/images/calendar_days_min_en-US.jpg)
 
 #### `renderDay: function`
 
