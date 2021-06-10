@@ -14,15 +14,21 @@ function NumberControl(props) {
   return (
     <div className="DateTimeInput-CalendarTime-Control">
       <button
+        className="DateTimeInput-CalendarTime-Control-Plus"
         onClick={onClickPlus}
         type="button"
       >
         +
       </button>
-      <span>
-        {value}
-      </span>
       <button
+        className="DateTimeInput-CalendarTime-Control-Value"
+        disabled
+        type="button"
+      >
+        {value}
+      </button>
+      <button
+        className="DateTimeInput-CalendarTime-Control-Minus"
         onClick={onClickMinus}
         type="button"
       >

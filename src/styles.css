@@ -58,26 +58,25 @@
 
 .DateTimeInput-Calendar button {
   background-color: transparent;
-  border: solid 2px transparent;
+  border: none;
   border-radius: 3px;
   color: inherit;
+  cursor: pointer;
   font-family: inherit;
   font-size: inherit;
   margin: 0;
-  padding: 0;
+  padding: 5px;
+  text-align: center;
 }
 
 .DateTimeInput-Calendar button:disabled {
+  cursor: default;
   filter: opacity(0.5);
-}
-
-.DateTimeInput-Calendar button:not(:disabled) {
-  cursor: pointer;
 }
 
 .DateTimeInput-Calendar button:focus,
 .DateTimeInput-Calendar button:not(:disabled):hover {
-  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .DateTimeInput-Calendar [class*=Current] {
@@ -120,16 +119,6 @@
 .DateTimeInput-CalendarHeader > button {
   flex-basis: 100%;
   flex-grow: 1;
-  border: solid 0 transparent;
-  padding: 5px;
-  text-align: center;
-}
-
-.DateTimeInput-CalendarFooter > button:focus,
-.DateTimeInput-CalendarFooter > button:not(:disabled):hover,
-.DateTimeInput-CalendarHeader > button:focus,
-.DateTimeInput-CalendarHeader > button:not(:disabled):hover {
-  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .DateTimeInput-CalendarDays .DateTimeInput-CalendarHeader-Day,
@@ -151,7 +140,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .DateTimeInput-Calendar-CalendarButton,
@@ -183,7 +172,6 @@
   flex-basis: 100%;
   flex-grow: 1;
   background-color: rgba(0, 0, 0, 0.05);
-  border: solid 2px transparent;
   font-size: 0.7rem;
   padding: 5px;
   text-align: center;
@@ -198,13 +186,12 @@
 }
 
 .DateTimeInput-CalendarDays-WeekNumber {
-  flex-basis: 100%;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  flex-basis: 100%;
+  flex-grow: 1;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.03);
-  border: solid 2px transparent;
   filter: opacity(0.5);
   font-size: 0.7rem;
   padding: 5px;
@@ -215,8 +202,6 @@
   flex-basis: 100%;
   flex-grow: 1;
   font-size: 0.8rem;
-  text-align: center;
-  padding: 5px;
 }
 
 .DateTimeInput-Calendar .DateTimeInput-CalendarDays-Other {
@@ -227,8 +212,12 @@
 .DateTimeInput-Calendar .DateTimeInput-CalendarYears-Year {
   flex-basis: 40%;
   flex-grow: 1;
-  padding: 5px;
-  text-align: center;
+}
+
+.DateTimeInput-Calendar .DateTimeInput-CalendarDays-Day,
+.DateTimeInput-Calendar .DateTimeInput-CalendarMonths-Month,
+.DateTimeInput-Calendar .DateTimeInput-CalendarYears-Year {
+  border: solid 1px transparent;
 }
 
 .DateTimeInput-CalendarTime-Control {
@@ -238,22 +227,7 @@
   user-select: none;
 }
 
-.DateTimeInput-CalendarTime-Control > *:nth-child(2) {
+.DateTimeInput-CalendarTime-Control .DateTimeInput-CalendarTime-Control-Value {
   font-family: monospace;
   padding: 10px;
-}
-
-.DateTimeInput-CalendarTime-Control > *:nth-child(1),
-.DateTimeInput-CalendarTime-Control > *:nth-child(3) {
-  background-color: rgba(0, 0, 0, 0.05);
-  font-size: 1.5em;
-  height: 1.5em;
-  width: 1.5em;
-}
-
-.DateTimeInput-CalendarTime-Control > *:nth-child(1):focus,
-.DateTimeInput-CalendarTime-Control > *:nth-child(1):not(:disabled):hover,
-.DateTimeInput-CalendarTime-Control > *:nth-child(3):focus,
-.DateTimeInput-CalendarTime-Control > *:nth-child(3):not(:disabled):hover {
-  background-color: rgba(0, 0, 0, 0.1);
 }
