@@ -5,6 +5,7 @@
 
 import { DateTime } from 'luxon';
 import {
+  useCallback,
   useMemo,
   useReducer,
 } from 'react';
@@ -41,13 +42,18 @@ function useCalendar(props) {
     new Intl.NumberFormat(locale, { useGrouping: false })
   ), [locale]);
 
+  const toFormat = useCallback((datetime, ...format) => (
+    datetime.setLocale(locale).toFormat(...format)
+  ), [locale]);
+
   const [state, dispatch] = useReducer(calendarReducer, initialState, undefined);
   return useMemo(() => ({
     dispatch,
     locale,
     numberFormatter,
     state,
-  }), [locale, numberFormatter, state]);
+    toFormat,
+  }), [locale, numberFormatter, state, toFormat]);
 }
 
 export default useCalendar;

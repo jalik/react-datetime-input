@@ -12,7 +12,11 @@ import { CALENDAR_MODE_TIME } from '../../modes';
 import { useCalendarContext } from '../CalendarProvider';
 
 function TimeButton() {
-  const { dispatch, locale, state } = useCalendarContext();
+  const {
+    dispatch,
+    state,
+    toFormat,
+  } = useCalendarContext();
 
   const dateTime = useMemo(() => (
     state.selectedDateTime || state.dateTime
@@ -28,7 +32,7 @@ function TimeButton() {
       onClick={handleClickTime}
       type="button"
     >
-      {dateTime.setLocale(locale).toFormat('tt')}
+      {toFormat(dateTime, 'tt')}
     </button>
   );
 }

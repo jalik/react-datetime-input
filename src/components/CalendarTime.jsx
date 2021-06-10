@@ -19,11 +19,11 @@ import NumberControl from './NumberControl';
 
 function CalendarTime(props) {
   const { onChange, showTimeZone } = props;
-  const { dispatch, locale, state } = useCalendarContext();
+  const { dispatch, state, toFormat } = useCalendarContext();
 
   const dateTime = useMemo(() => (
-    (state.selectedDateTime || state.dateTime).setLocale(locale)
-  ), [locale, state.dateTime, state.selectedDateTime]);
+    state.selectedDateTime || state.dateTime
+  ), [state.dateTime, state.selectedDateTime]);
 
   const handleClickMinus = useCallback((unit) => (
     () => {
@@ -55,21 +55,21 @@ function CalendarTime(props) {
         <NumberControl
           onClickMinus={handleClickMinus('hour')}
           onClickPlus={handleClickPlus('hour')}
-          value={dateTime.toFormat('HH')}
+          value={toFormat(dateTime, 'HH')}
         />
         <span>:</span>
         <NumberControl
           onClickMinus={handleClickMinus('minute')}
           onClickPlus={handleClickPlus('minute')}
-          value={dateTime.toFormat('mm')}
+          value={toFormat(dateTime, 'mm')}
         />
         <span>:</span>
         <NumberControl
           onClickMinus={handleClickMinus('second')}
           onClickPlus={handleClickPlus('second')}
-          value={dateTime.toFormat('ss')}
+          value={toFormat(dateTime, 'ss')}
         />
-        <span>{dateTime.toFormat('a')}</span>
+        <span>{toFormat(dateTime, 'a')}</span>
       </div>
     </div>
   );

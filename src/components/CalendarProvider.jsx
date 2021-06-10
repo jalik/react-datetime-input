@@ -24,7 +24,13 @@ const CalendarContext = createContext(null);
 
 /**
  * Returns the calendar context.
- * @return {null|{dispatch: function, locale: string, numberFormatter: *, state: *}}
+ * @return {null|{
+ * dispatch: function,
+ * locale: string,
+ * numberFormatter: *,
+ * state: *,
+ * toFormat: function
+ * }}
  */
 export function useCalendarContext() {
   return useContext(CalendarContext);

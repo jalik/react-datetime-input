@@ -9,7 +9,7 @@ import { CALENDAR_MODE_YEAR } from '../../modes';
 import { useCalendarContext } from '../CalendarProvider';
 
 function YearButton() {
-  const { numberFormatter, state, dispatch } = useCalendarContext();
+  const { dispatch, state, toFormat } = useCalendarContext();
   const { dateTime } = state;
 
   const handleClickYear = useCallback(() => {
@@ -22,7 +22,7 @@ function YearButton() {
       onClick={handleClickYear}
       type="button"
     >
-      {numberFormatter.format(dateTime.year)}
+      {toFormat(dateTime, 'yyyy')}
     </button>
   );
 }

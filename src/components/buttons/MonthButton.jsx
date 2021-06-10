@@ -3,21 +3,19 @@
  * Copyright (c) 2021 Karl STEIN
  */
 
-import React, {
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { useCallback } from 'react';
 import { ACTION_SET_MODE } from '../../calendarReducer';
 import { CALENDAR_MODE_MONTH } from '../../modes';
 import { useCalendarContext } from '../CalendarProvider';
 
 function MonthButton() {
-  const { state, dispatch, locale } = useCalendarContext();
-  const { dateTime } = state;
+  const {
+    dispatch,
+    state,
+    toFormat,
+  } = useCalendarContext();
 
-  const month = useMemo(() => (
-    dateTime.setLocale(locale).toFormat('MMM')
-  ), [dateTime, locale]);
+  const { dateTime } = state;
 
   const handleClickMonth = useCallback(() => {
     dispatch({ type: ACTION_SET_MODE, data: { mode: CALENDAR_MODE_MONTH } });
@@ -29,7 +27,7 @@ function MonthButton() {
       onClick={handleClickMonth}
       type="button"
     >
-      {month}
+      {toFormat(dateTime, 'MMM')}
     </button>
   );
 }

@@ -37,9 +37,9 @@ function CalendarDays(props) {
 
   const {
     dispatch,
-    locale,
     numberFormatter,
     state,
+    toFormat,
   } = useCalendarContext();
 
   const { dateTime, selectedDateTime } = state;
@@ -91,7 +91,7 @@ function CalendarDays(props) {
           ) : null}
           {weeks[0].days.map((day) => (
             <small key={day.dateString}>
-              {day.dateTime.setLocale(locale).toFormat('ccccc')}
+              {toFormat(day.dateTime, 'ccccc')}
             </small>
           ))}
         </div>
