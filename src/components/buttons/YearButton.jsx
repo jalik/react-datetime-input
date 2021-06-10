@@ -13,7 +13,10 @@ function YearButton() {
   const { dateTime } = state;
 
   const handleClickYear = useCallback(() => {
-    dispatch({ type: ACTION_SET_MODE, data: { mode: CALENDAR_MODE_YEAR } });
+    dispatch({
+      type: ACTION_SET_MODE,
+      data: { mode: CALENDAR_MODE_YEAR },
+    });
   }, [dispatch]);
 
   return (

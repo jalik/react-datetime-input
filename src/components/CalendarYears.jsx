@@ -32,15 +32,15 @@ function CalendarYears(props) {
 
   const { dateTime, selectedDateTime } = state;
   const now = DateTime.now().setLocale(locale);
-
-  const years = useMemo(() => (
-    getYears(dateTime.year, size)
-  ), [dateTime.year, size]);
+  const years = useMemo(() => getYears(dateTime.year, size), [dateTime.year, size]);
 
   const handleClickYear = useCallback((year) => (
     () => {
-      dispatch({ type: ACTION_SELECT_YEAR, data: { year } });
       onChange(dateTime.set({ year }));
+      dispatch({
+        type: ACTION_SELECT_YEAR,
+        data: { year },
+      });
     }
   ), [dateTime, dispatch, onChange]);
 

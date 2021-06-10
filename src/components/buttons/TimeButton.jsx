@@ -23,7 +23,10 @@ function TimeButton() {
   ), [state.dateTime, state.selectedDateTime]);
 
   const handleClickTime = useCallback(() => {
-    dispatch({ type: ACTION_SET_MODE, data: { mode: CALENDAR_MODE_TIME } });
+    dispatch({
+      type: ACTION_SET_MODE,
+      data: { mode: CALENDAR_MODE_TIME },
+    });
   }, [dispatch]);
 
   return (

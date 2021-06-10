@@ -20,16 +20,18 @@ import { useCalendarContext } from './CalendarProvider';
 
 function CalendarMonths(props) {
   const { onChange } = props;
-  const { state, dispatch, locale } = useCalendarContext();
+  const { dispatch, locale, state } = useCalendarContext();
   const { dateTime, selectedDateTime } = state;
   const now = DateTime.now().setLocale(locale);
-
   const months = useMemo(() => getMonths(locale), [locale]);
 
   const handleClickMonth = useCallback((month) => (
     () => {
-      dispatch({ type: ACTION_SELECT_MONTH, data: { month } });
       onChange(dateTime.set({ month }));
+      dispatch({
+        type: ACTION_SELECT_MONTH,
+        data: { month },
+      });
     }
   ), [dateTime, dispatch, onChange]);
 

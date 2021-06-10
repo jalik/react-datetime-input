@@ -28,21 +28,21 @@ function CalendarTime(props) {
   const handleClickMinus = useCallback((unit) => (
     () => {
       const dt = dateTime.minus({ [unit]: 1 });
+      onChange(dt);
       dispatch({
         type: ACTION_SET_SELECTED_DATETIME,
         data: { selectedDateTime: dt },
       });
-      onChange(dt);
     }), [dateTime, dispatch, onChange]);
 
   const handleClickPlus = useCallback((unit) => (
     () => {
       const dt = dateTime.plus({ [unit]: 1 });
+      onChange(dt);
       dispatch({
         type: ACTION_SET_SELECTED_DATETIME,
         data: { selectedDateTime: dt },
       });
-      onChange(dt);
     }), [dateTime, dispatch, onChange]);
 
   return (

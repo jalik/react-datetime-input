@@ -70,8 +70,11 @@ function CalendarDays(props) {
       if (maxDateTime && maxDateTime.isValid) {
         dt = DateTime.min(maxDateTime, dt);
       }
-      dispatch({ type: ACTION_SELECT_DAY, data: { day: dt } });
       onChange(dt);
+      dispatch({
+        type: ACTION_SELECT_DAY,
+        data: { day: dt },
+      });
     }
   ), [dateTime, dispatch, maxDateTime, minDateTime, onChange]);
 
