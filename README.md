@@ -10,8 +10,9 @@
 
 This lib allows you to add datetime inputs in your React applications with the following advantages.
 
-- Available in CJS and ESM
+- Available in CJS and ESM (tree shakeable)
 - Multiple selection modes (year, month, day, time)
+- Support for min and max datetime
 - Customizable datetime format
 - Customizable view (locale, week numbers, timezone...)
 - Works like a normal input (onChange/value)
@@ -96,6 +97,14 @@ The default value is `D tt` (localized date and time).
 
 Allow to set the language of the calendar (based on the **Intl API**).  
 The default value is `navigator.language` if available.
+
+#### `max: string`
+
+Pass an ISO date string that is the maximal valid datetime.
+
+#### `min: string`
+
+Pass an ISO date string that is the minimal valid datetime.
 
 #### `renderDay: function`
 

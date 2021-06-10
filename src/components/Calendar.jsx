@@ -31,6 +31,8 @@ function Calendar(props) {
   const {
     date,
     disabled,
+    maxDate,
+    minDate,
     locale,
     mode,
     onChange,
@@ -58,6 +60,8 @@ function Calendar(props) {
     if (state.mode === CALENDAR_MODE_DAY) {
       return (
         <CalendarDays
+          maxDate={maxDate}
+          minDate={minDate}
           onChange={handleChange}
           renderDay={renderDay}
           showTimeZone={showTimeZone}
@@ -84,7 +88,7 @@ function Calendar(props) {
       );
     }
     return null;
-  }, [handleChange, renderDay, showTimeZone, showWeekNumbers, state.mode]);
+  }, [handleChange, maxDate, minDate, renderDay, showTimeZone, showWeekNumbers, state.mode]);
 
   return (
     <CalendarProvider context={context}>
@@ -104,6 +108,8 @@ function Calendar(props) {
 Calendar.propTypes = {
   date: string,
   disabled: bool,
+  maxDate: string,
+  minDate: string,
   locale: string,
   mode: oneOf([
     CALENDAR_MODE_DAY,
@@ -121,6 +127,8 @@ Calendar.propTypes = {
 Calendar.defaultProps = {
   date: null,
   disabled: false,
+  maxDate: null,
+  minDate: null,
   locale: getDefaultLanguage(),
   mode: CALENDAR_MODE_DAY,
   renderDay: null,

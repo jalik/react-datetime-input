@@ -3,9 +3,11 @@
  * Copyright (c) 2021 Karl STEIN
  */
 
+import { DateTime } from 'luxon';
 import {
   bool,
   func,
+  string,
 } from 'prop-types';
 import React, {
   useCallback,
@@ -25,6 +27,8 @@ import { useCalendarContext } from './CalendarProvider';
 
 function CalendarDays(props) {
   const {
+    maxDate,
+    minDate,
     onChange,
     renderDay,
     showTimeZone,
@@ -39,24 +43,37 @@ function CalendarDays(props) {
   } = useCalendarContext();
 
   const { dateTime, selectedDateTime } = state;
+  const maxDateTime = useMemo(() => (maxDate ? DateTime.fromISO(maxDate) : null), [maxDate]);
+  const minDateTime = useMemo(() => (minDate ? DateTime.fromISO(minDate) : null), [minDate]);
   const weeks = useMemo(() => getWeeks(dateTime), [dateTime]);
   const currentMonth = useMemo(() => weeks[1].days[0].dateTime, [weeks]);
   const DayCell = renderDay || CalendarDay;
 
+  const isDayDisabled = useCallback((day) => (
+    (minDateTime && day < minDateTime.startOf('day'))
+    || (maxDateTime && day > maxDateTime.endOf('day'))
+  ), [maxDateTime, minDateTime]);
+
   const handleClickDay = useCallback((day) => (
     () => {
-      const date = {
+      let dt = dateTime.set({
         day: day.day,
         month: day.month,
         year: day.year,
-        hour: dateTime.hour,
-        minute: dateTime.minute,
-        second: dateTime.second,
-      };
-      dispatch({ type: ACTION_SELECT_DAY, data: { day: day.dateTime } });
-      onChange(day.dateTime.set(date));
+      });
+
+      // Use maximal valid date.
+      if (minDateTime && minDateTime.isValid) {
+        dt = DateTime.max(minDateTime, dt);
+      }
+      // Use minimal valid date.
+      if (maxDateTime && maxDateTime.isValid) {
+        dt = DateTime.min(maxDateTime, dt);
+      }
+      dispatch({ type: ACTION_SELECT_DAY, data: { day: dt } });
+      onChange(dt);
     }
-  ), [dateTime.hour, dateTime.minute, dateTime.second, dispatch, onChange]);
+  ), [dateTime, dispatch, maxDateTime, minDateTime, onChange]);
 
   return (
     <div className="DateTimeInput-CalendarDays">
@@ -92,7 +109,8 @@ function CalendarDays(props) {
                   key={day.dateString}
                   currentMonth={currentMonth}
                   dateTime={day.dateTime}
-                  onClick={handleClickDay(day)}
+                  disabled={isDayDisabled(day.dateTime)}
+                  onClick={handleClickDay(day.dateTime)}
                   selectedDateTime={selectedDateTime}
                 />
               ))}
@@ -109,6 +127,8 @@ function CalendarDays(props) {
 }
 
 CalendarDays.propTypes = {
+  maxDate: string,
+  minDate: string,
   onChange: func.isRequired,
   renderDay: func,
   showTimeZone: bool,
@@ -116,6 +136,8 @@ CalendarDays.propTypes = {
 };
 
 CalendarDays.defaultProps = {
+  maxDate: null,
+  minDate: null,
   renderDay: null,
   showTimeZone: false,
   showWeekNumbers: false,

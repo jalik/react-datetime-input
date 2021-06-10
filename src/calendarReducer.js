@@ -48,21 +48,10 @@ function getPreviousActionState(state) {
 
 function getSelectDayActionState(state, action) {
   const { day } = action.data;
-  const date = {
-    day: day.day,
-    month: day.month,
-    year: day.year,
-    hour: state.dateTime.hour,
-    minute: state.dateTime.minute,
-    second: state.dateTime.second,
-  };
-  const selectedDateTime = state.selectedDateTime
-    ? state.selectedDateTime.set(date) : null;
-  const dateTime = selectedDateTime || state.dateTime.set(date);
   return {
     ...state,
-    dateTime,
-    selectedDateTime: dateTime,
+    dateTime: day,
+    selectedDateTime: day,
   };
 }
 

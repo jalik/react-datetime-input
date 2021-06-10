@@ -57,6 +57,18 @@ FilledDateTimeInputStory.args = {
   value: DateTime.now().plus({ day: 2 }).toISO(),
 };
 
+export const DateTimeInputWithMaxStory = Template.bind({});
+DateTimeInputWithMaxStory.args = {
+  ...defaultArgs,
+  max: DateTime.now().toISO(),
+};
+
+export const DateTimeInputWithMinStory = Template.bind({});
+DateTimeInputWithMinStory.args = {
+  ...defaultArgs,
+  min: DateTime.now().toISO(),
+};
+
 function CustomDayCell(props) {
   // eslint-disable-next-line no-unused-vars,react/prop-types
   const { dateTime } = props;

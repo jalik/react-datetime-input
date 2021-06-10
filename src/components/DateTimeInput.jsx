@@ -28,6 +28,8 @@ function DateTimeInput(props) {
     disabled,
     format,
     locale,
+    max,
+    min,
     name,
     onBlur,
     onChange,
@@ -52,11 +54,19 @@ function DateTimeInput(props) {
 
   const dateIso = dateTime && dateTime.isValid ? dateTime.toISO() : null;
 
+  const isValueDisabled = useCallback((dateString) => {
+    const dt = DateTime.fromISO(dateString);
+    return (min && dt < DateTime.fromISO(min))
+      || (max && dt > DateTime.fromISO(max));
+  }, [max, min]);
+
   const handleBlur = useCallback((event) => {
     if (onBlur) onBlur(event);
     if (event.target.value === '') {
+      // Clear value if field is empty.
       onChange({ target: { name, value: null } });
     } else if (dateTime && dateTime.isValid) {
+      // Update value if local value is valid.
       onChange({ target: { name, value: dateTime.toISO() } });
     } else {
       // Restore current value if local value is not valid.
@@ -65,14 +75,16 @@ function DateTimeInput(props) {
     }
   }, [dateTime, format, locale, name, onBlur, onChange, value]);
 
-  const handleChange = useCallback((date) => {
-    if (!disabled) {
-      onChange({ target: { name, value: date } });
+  const handleChange = useCallback((dateString) => {
+    // Do nothing if field is disabled or if value is disabled.
+    if (!disabled && !isValueDisabled(dateString)) {
+      onChange({ target: { name, value: dateString } });
     }
-  }, [disabled, name, onChange]);
+  }, [disabled, isValueDisabled, name, onChange]);
 
   const handleChangeLocalValue = useCallback((event) => {
     setLocalValue(event.target.value);
+    // Clear value when field is empty.
     if (event.target.value === '') {
       onChange({ target: { name, value: null } });
     }
@@ -138,6 +150,8 @@ function DateTimeInput(props) {
           <Calendar
             date={dateIso}
             disabled={disabled}
+            maxDate={max}
+            minDate={min}
             locale={locale}
             onChange={handleChange}
             renderDay={renderDay}
@@ -156,6 +170,8 @@ DateTimeInput.propTypes = {
   className: string,
   disabled: bool,
   format: string,
+  max: string,
+  min: string,
   locale: string,
   name: string.isRequired,
   onBlur: func,
@@ -174,6 +190,8 @@ DateTimeInput.defaultProps = {
   className: null,
   disabled: false,
   format: 'D tt',
+  max: null,
+  min: null,
   locale: getDefaultLanguage(),
   onBlur: null,
   onChange: null,
