@@ -79,16 +79,16 @@ function CalendarDays(props) {
   ), [dateTime, dispatch, maxDateTime, minDateTime, onChange]);
 
   return (
-    <div className="DateTimeInput-CalendarDays">
-      <div className="DateTimeInput-CalendarHeader">
+    <div className="CalendarDays">
+      <div className="CalendarHeader">
         <MonthButton />
         <YearButton />
         <PreviousButton />
         <TodayButton />
         <NextButton />
       </div>
-      <div className="DateTimeInput-CalendarBody">
-        <div className="DateTimeInput-CalendarDays-DayNames">
+      <div className="CalendarBody">
+        <div className="CalendarDays-DayNames">
           {showWeekNumbers ? (
             <div />
           ) : null}
@@ -98,11 +98,11 @@ function CalendarDays(props) {
             </small>
           ))}
         </div>
-        <div className="DateTimeInput-CalendarDays-Weeks">
+        <div className="CalendarDays-Weeks">
           {weeks.map((week) => (
             <div key={week.number}>
               {showWeekNumbers ? (
-                <small className="DateTimeInput-CalendarDays-WeekNumber">
+                <small className="CalendarDays-WeekNumber">
                   {numberFormatter.format(week.number)}
                 </small>
               ) : null}
@@ -121,7 +121,7 @@ function CalendarDays(props) {
           ))}
         </div>
       </div>
-      <div className="DateTimeInput-CalendarFooter">
+      <div className="CalendarFooter">
         <TimeButton />
         {showTimeZone ? <ZoneButton /> : null}
       </div>

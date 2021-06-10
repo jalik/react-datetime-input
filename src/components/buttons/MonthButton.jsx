@@ -26,7 +26,7 @@ function MonthButton() {
 
   return (
     <button
-      className="DateTimeInput-CalendarHeader-Month"
+      className="Calendar-MonthButton"
       onClick={handleClickMonth}
       type="button"
     >

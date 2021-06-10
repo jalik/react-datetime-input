@@ -116,12 +116,12 @@ function DateTimeInput(props) {
         // eslint-disable-next-line max-len
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/control-has-associated-label,jsx-a11y/no-static-element-interactions
         <div
-          className="DateTimeInput-Catcher"
+          className="DateTimeInputCatcher"
           onClick={handleClickCatcher}
         />
       ) : null}
 
-      <div className="DateTimeInput-Wrapper">
+      <div className="DateTimeInputWrapper">
         <input
           disabled={disabled}
           name={name}

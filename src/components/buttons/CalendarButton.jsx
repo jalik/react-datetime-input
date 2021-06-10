@@ -15,7 +15,7 @@ function CalendarButton(props) {
     <button
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...otherProps}
-      className="DateTimeInput-Calendar-CalendarButton"
+      className="CalendarButton"
       onClick={onClick}
       type="button"
     >

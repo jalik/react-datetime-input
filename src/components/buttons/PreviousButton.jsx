@@ -17,7 +17,7 @@ function PreviousButton() {
 
   return (
     <button
-      className="DateTimeInput-Calendar-PreviousButton"
+      className="Calendar-PreviousButton"
       onClick={handleClickPrevious}
       type="button"
     >

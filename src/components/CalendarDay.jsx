@@ -24,13 +24,13 @@ function CalendarDay(props) {
   let classes = className || '';
 
   if (!dateTime.hasSame(currentMonth, 'month')) {
-    classes += ' DateTimeInput-CalendarDays-Other';
+    classes += ' CalendarDays-Other';
   }
   if (dateTime.hasSame(DateTime.now(), 'day')) {
-    classes += ' DateTimeInput-CalendarDays-Current';
+    classes += ' CalendarDays-Current';
   }
   if (selectedDateTime && dateTime.hasSame(selectedDateTime, 'day')) {
-    classes += ' DateTimeInput-CalendarDays-Selected';
+    classes += ' CalendarDays-Selected';
   }
   return (
     <button
@@ -52,7 +52,7 @@ CalendarDay.propTypes = {
 };
 
 CalendarDay.defaultProps = {
-  className: 'DateTimeInput-CalendarDays-Day',
+  className: 'CalendarDays-Day',
   selectedDateTime: null,
 };
 

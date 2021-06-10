@@ -36,27 +36,27 @@ function CalendarMonths(props) {
   ), [dateTime, dispatch, onChange]);
 
   return (
-    <div className="DateTimeInput-CalendarMonths">
-      <div className="DateTimeInput-CalendarHeader">
+    <div className="CalendarMonths">
+      <div className="CalendarHeader">
         <MonthButton />
         <YearButton />
         <PreviousButton />
         <TodayButton />
         <NextButton />
       </div>
-      <div className="DateTimeInput-CalendarBody">
+      <div className="CalendarBody">
         {months.map((month, index) => {
           const monthNumber = index + 1;
-          let classes = 'DateTimeInput-CalendarMonths-Month';
+          let classes = 'CalendarMonths-Month';
 
           if (now.month === monthNumber
             && now.hasSame(dateTime, 'year')) {
-            classes += ' DateTimeInput-CalendarMonths-Month-Current';
+            classes += ' CalendarMonths-Month-Current';
           }
           if (selectedDateTime
             && selectedDateTime.month === monthNumber
             && selectedDateTime.hasSame(dateTime, 'month')) {
-            classes += ' DateTimeInput-CalendarMonths-Month-Selected';
+            classes += ' CalendarMonths-Month-Selected';
           }
           return (
             <button

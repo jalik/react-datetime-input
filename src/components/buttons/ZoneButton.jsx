@@ -11,7 +11,7 @@ function ZoneButton() {
   const { dateTime } = state;
   return (
     <button
-      className="DateTimeInput-CalendarHeader-Zone"
+      className="Calendar-ZoneButton"
       disabled
       type="button"
     >

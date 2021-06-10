@@ -17,7 +17,7 @@ function TodayButton() {
 
   return (
     <button
-      className="DateTimeInput-Calendar-TodayButton"
+      className="Calendar-TodayButton"
       onClick={handleClickToday}
       type="button"
     >

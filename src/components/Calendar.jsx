@@ -92,10 +92,10 @@ function Calendar(props) {
 
   return (
     <CalendarProvider context={context}>
-      <div className="DateTimeInput-Calendar-Wrapper">
-        <div className="DateTimeInput-Calendar-Bkg" />
+      <div className="CalendarWrapper">
+        <div className="CalendarBkg" />
         <fieldset
-          className="DateTimeInput-Calendar"
+          className="Calendar"
           disabled={disabled}
         >
           {days}

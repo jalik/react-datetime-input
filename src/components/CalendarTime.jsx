@@ -46,12 +46,12 @@ function CalendarTime(props) {
     }), [dateTime, dispatch, onChange]);
 
   return (
-    <div className="DateTimeInput-CalendarTime">
-      <div className="DateTimeInput-CalendarHeader">
+    <div className="CalendarTime">
+      <div className="CalendarHeader">
         <DateButton />
         {showTimeZone ? <ZoneButton /> : null}
       </div>
-      <div className="DateTimeInput-CalendarBody">
+      <div className="CalendarBody">
         <NumberControl
           onClickMinus={handleClickMinus('hour')}
           onClickPlus={handleClickPlus('hour')}

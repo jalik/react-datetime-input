@@ -12,23 +12,23 @@ import React from 'react';
 function NumberControl(props) {
   const { onClickMinus, onClickPlus, value } = props;
   return (
-    <div className="DateTimeInput-CalendarTime-Control">
+    <div className="CalendarTime-Control">
       <button
-        className="DateTimeInput-CalendarTime-Control-Plus"
+        className="CalendarTime-Control-Plus"
         onClick={onClickPlus}
         type="button"
       >
         +
       </button>
       <button
-        className="DateTimeInput-CalendarTime-Control-Value"
+        className="CalendarTime-Control-Value"
         disabled
         type="button"
       >
         {value}
       </button>
       <button
-        className="DateTimeInput-CalendarTime-Control-Minus"
+        className="CalendarTime-Control-Minus"
         onClick={onClickMinus}
         type="button"
       >

@@ -31,7 +31,7 @@ function DateButton() {
 
   return (
     <button
-      className="DateTimeInput-CalendarHeader-Day"
+      className="Calendar-DateButton"
       onClick={handleClickTime}
       type="button"
     >

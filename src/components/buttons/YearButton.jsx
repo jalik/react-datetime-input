@@ -21,7 +21,7 @@ function YearButton() {
 
   return (
     <button
-      className="DateTimeInput-CalendarHeader-Year"
+      className="Calendar-YearButton"
       onClick={handleClickYear}
       type="button"
     >

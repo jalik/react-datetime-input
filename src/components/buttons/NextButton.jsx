@@ -17,7 +17,7 @@ function NextButton() {
 
   return (
     <button
-      className="DateTimeInput-Calendar-NextButton"
+      className="Calendar-NextButton"
       onClick={handleClickNext}
       type="button"
     >

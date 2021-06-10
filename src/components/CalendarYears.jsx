@@ -45,23 +45,23 @@ function CalendarYears(props) {
   ), [dateTime, dispatch, onChange]);
 
   return (
-    <div className="DateTimeInput-CalendarYears">
-      <div className="DateTimeInput-CalendarHeader">
+    <div className="CalendarYears">
+      <div className="CalendarHeader">
         <MonthButton />
         <YearButton />
         <PreviousButton />
         <TodayButton />
         <NextButton />
       </div>
-      <div className="DateTimeInput-CalendarBody">
+      <div className="CalendarBody">
         {years.map((year) => {
-          let classes = 'DateTimeInput-CalendarYears-Year';
+          let classes = 'CalendarYears-Year';
 
           if (now.year === year) {
-            classes += ' DateTimeInput-CalendarYears-Year-Current';
+            classes += ' CalendarYears-Year-Current';
           }
           if (selectedDateTime && selectedDateTime.year === year) {
-            classes += ' DateTimeInput-CalendarYears-Year-Selected';
+            classes += ' CalendarYears-Year-Selected';
           }
           return (
             <button
