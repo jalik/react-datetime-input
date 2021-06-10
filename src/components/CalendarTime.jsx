@@ -19,11 +19,11 @@ import NumberControl from './NumberControl';
 
 function CalendarTime(props) {
   const { onChange, showTimeZone } = props;
-  const { state, dispatch } = useCalendarContext();
+  const { dispatch, locale, state } = useCalendarContext();
 
   const dateTime = useMemo(() => (
-    state.selectedDateTime || state.dateTime
-  ), [state.dateTime, state.selectedDateTime]);
+    (state.selectedDateTime || state.dateTime).setLocale(locale)
+  ), [locale, state.dateTime, state.selectedDateTime]);
 
   const handleClickMinus = useCallback((unit) => (
     () => {

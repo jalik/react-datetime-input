@@ -7,12 +7,16 @@ import React from 'react';
 import { useCalendarContext } from '../CalendarProvider';
 
 function ZoneButton() {
-  const { state } = useCalendarContext();
+  const { locale, state } = useCalendarContext();
   const { dateTime } = state;
   return (
-    <span className="DateTimeInput-CalendarHeader-Zone">
-      {dateTime.toFormat('ZZZZ')}
-    </span>
+    <button
+      className="DateTimeInput-CalendarHeader-Zone"
+      disabled
+      type="button"
+    >
+      {dateTime.setLocale(locale).toFormat('ZZZZ')}
+    </button>
   );
 }
 

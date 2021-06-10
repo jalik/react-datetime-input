@@ -12,11 +12,11 @@ import { CALENDAR_MODE_DAY } from '../../modes';
 import { useCalendarContext } from '../CalendarProvider';
 
 function DateButton() {
-  const { state, dispatch } = useCalendarContext();
+  const { dispatch, locale, state } = useCalendarContext();
 
   const dateTime = useMemo(() => (
-    state.selectedDateTime || state.dateTime
-  ), [state.dateTime, state.selectedDateTime]);
+    (state.selectedDateTime || state.dateTime).setLocale(locale)
+  ), [locale, state.dateTime, state.selectedDateTime]);
 
   const handleClickTime = useCallback(() => {
     dispatch({ type: ACTION_SET_MODE, data: { mode: CALENDAR_MODE_DAY } });
