@@ -25,7 +25,7 @@ function CalendarMonths(props) {
   const now = DateTime.now().setLocale(locale);
   const months = useMemo(() => getMonths(locale), [locale]);
 
-  const handleClickMonth = useCallback((month) => (
+  const handleClickValue = useCallback((month) => (
     () => {
       onChange(dateTime.set({ month }));
       dispatch({
@@ -62,7 +62,7 @@ function CalendarMonths(props) {
             <button
               key={month}
               className={classes}
-              onClick={handleClickMonth(monthNumber)}
+              onClick={handleClickValue(monthNumber)}
               type="button"
             >
               {month}

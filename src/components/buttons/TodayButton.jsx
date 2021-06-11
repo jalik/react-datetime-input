@@ -11,14 +11,14 @@ import { useCalendarContext } from '../CalendarProvider';
 function TodayButton() {
   const { dispatch } = useCalendarContext();
 
-  const handleClickToday = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch({ type: ACTION_TODAY });
   }, [dispatch]);
 
   return (
     <button
       className="Calendar-TodayButton"
-      onClick={handleClickToday}
+      onClick={handleClick}
       type="button"
     >
       <svg

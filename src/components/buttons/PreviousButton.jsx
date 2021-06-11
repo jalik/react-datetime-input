@@ -11,14 +11,14 @@ import { useCalendarContext } from '../CalendarProvider';
 function PreviousButton() {
   const { dispatch } = useCalendarContext();
 
-  const handleClickPrevious = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch({ type: ACTION_PREVIOUS });
   }, [dispatch]);
 
   return (
     <button
       className="Calendar-PreviousButton"
-      onClick={handleClickPrevious}
+      onClick={handleClick}
       type="button"
     >
       <svg

@@ -10,7 +10,7 @@ import {
 } from 'prop-types';
 import React from 'react';
 
-function NumberControl(props) {
+function Control(props) {
   const {
     disabled,
     onClickMinus,
@@ -48,7 +48,7 @@ function NumberControl(props) {
   );
 }
 
-NumberControl.propTypes = {
+Control.propTypes = {
   disabled: bool,
   onClickMinus: func.isRequired,
   onClickPlus: func.isRequired,
@@ -56,8 +56,8 @@ NumberControl.propTypes = {
   value: node.isRequired,
 };
 
-NumberControl.defaultProps = {
+Control.defaultProps = {
   disabled: false,
 };
 
-export default NumberControl;
+export default Control;

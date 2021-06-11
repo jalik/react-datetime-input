@@ -17,7 +17,7 @@ function MonthButton() {
 
   const { dateTime } = state;
 
-  const handleClickMonth = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch({
       type: ACTION_SET_MODE,
       data: { mode: CALENDAR_MODE_MONTH },
@@ -27,7 +27,7 @@ function MonthButton() {
   return (
     <button
       className="Calendar-MonthButton"
-      onClick={handleClickMonth}
+      onClick={handleClick}
       type="button"
     >
       {toFormat(dateTime, 'MMM')}

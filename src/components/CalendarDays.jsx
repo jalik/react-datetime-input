@@ -54,7 +54,7 @@ function CalendarDays(props) {
     || (maxDateTime && day > maxDateTime.endOf('day'))
   ), [maxDateTime, minDateTime]);
 
-  const handleClickDay = useCallback((day) => (
+  const handleClickValue = useCallback((day) => (
     () => {
       let dt = dateTime.set({
         day: day.day,
@@ -113,7 +113,7 @@ function CalendarDays(props) {
                   currentMonth={currentMonth}
                   dateTime={day.dateTime}
                   disabled={isDayDisabled(day.dateTime)}
-                  onClick={handleClickDay(day.dateTime)}
+                  onClick={handleClickValue(day.dateTime)}
                   selectedDateTime={selectedDateTime}
                 />
               ))}

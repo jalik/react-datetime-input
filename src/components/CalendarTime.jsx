@@ -23,7 +23,7 @@ import {
 import DateButton from './buttons/DateButton';
 import ZoneButton from './buttons/ZoneButton';
 import { useCalendarContext } from './CalendarProvider';
-import NumberControl from './NumberControl';
+import Control from './Control';
 
 function CalendarTime(props) {
   const { onChange, showTimeZone } = props;
@@ -69,21 +69,21 @@ function CalendarTime(props) {
         {showTimeZone ? <ZoneButton /> : null}
       </div>
       <div className="CalendarBody">
-        <NumberControl
+        <Control
           onClickMinus={handleClickMinus('hour')}
           onClickPlus={handleClickPlus('hour')}
           onClickValue={handleClickValue(CALENDAR_MODE_HOUR)}
           value={toFormat(dateTime, 'HH')}
         />
         <span>:</span>
-        <NumberControl
+        <Control
           onClickMinus={handleClickMinus('minute')}
           onClickPlus={handleClickPlus('minute')}
           onClickValue={handleClickValue(CALENDAR_MODE_MINUTE)}
           value={toFormat(dateTime, 'mm')}
         />
         <span>:</span>
-        <NumberControl
+        <Control
           onClickMinus={handleClickMinus('second')}
           onClickPlus={handleClickPlus('second')}
           onClickValue={handleClickValue(CALENDAR_MODE_SECOND)}

@@ -12,7 +12,7 @@ function YearButton() {
   const { dispatch, state, toFormat } = useCalendarContext();
   const { dateTime } = state;
 
-  const handleClickYear = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch({
       type: ACTION_SET_MODE,
       data: { mode: CALENDAR_MODE_YEAR },
@@ -22,7 +22,7 @@ function YearButton() {
   return (
     <button
       className="Calendar-YearButton"
-      onClick={handleClickYear}
+      onClick={handleClick}
       type="button"
     >
       {toFormat(dateTime, 'yyyy')}

@@ -34,7 +34,7 @@ function CalendarYears(props) {
   const now = DateTime.now().setLocale(locale);
   const years = useMemo(() => getYears(dateTime.year, size), [dateTime.year, size]);
 
-  const handleClickYear = useCallback((year) => (
+  const handleClickValue = useCallback((year) => (
     () => {
       onChange(dateTime.set({ year }));
       dispatch({
@@ -67,7 +67,7 @@ function CalendarYears(props) {
             <button
               key={year}
               className={classes}
-              onClick={handleClickYear(year)}
+              onClick={handleClickValue(year)}
               type="button"
             >
               {numberFormatter.format(year)}

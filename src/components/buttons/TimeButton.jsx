@@ -22,7 +22,7 @@ function TimeButton() {
     state.selectedDateTime || state.dateTime
   ), [state.dateTime, state.selectedDateTime]);
 
-  const handleClickTime = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch({
       type: ACTION_SET_MODE,
       data: { mode: CALENDAR_MODE_TIME },
@@ -32,7 +32,7 @@ function TimeButton() {
   return (
     <button
       className="Calendar-TimeButton"
-      onClick={handleClickTime}
+      onClick={handleClick}
       type="button"
     >
       {toFormat(dateTime, 'tt')}

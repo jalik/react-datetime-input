@@ -28,7 +28,7 @@ function CalendarMinutes(props) {
   const now = DateTime.now().setLocale(locale);
   const minutes = useMemo(() => getNumbers(60, 5), []);
 
-  const handleClickMinute = useCallback((minute) => (
+  const handleClickValue = useCallback((minute) => (
     () => {
       onChange(dateTime.set({ minute }));
       dispatch({
@@ -61,7 +61,7 @@ function CalendarMinutes(props) {
             <button
               key={minute}
               className={classes}
-              onClick={handleClickMinute(minute)}
+              onClick={handleClickValue(minute)}
               type="button"
             >
               {numberFormatter.format(minute)}
