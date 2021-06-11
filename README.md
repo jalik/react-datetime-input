@@ -26,6 +26,8 @@ This lib allows you to add datetime inputs in your React applications with the f
 ![Calendar](docs/images/calendar_years_en-US.jpg)
 ![Calendar](docs/images/calendar_months_en-US.jpg)
 ![Calendar](docs/images/calendar_time_en-US.jpg)
+![Calendar](docs/images/calendar_hour_en-US.jpg)
+![Calendar](docs/images/calendar_minute_en-US.jpg)
 
 ## Quickstart
 
@@ -99,7 +101,7 @@ Example of different locales (`fr-FR`, `ru`, `zh`):
 
 Pass an ISO date string that is the maximal valid datetime.
 
-Example with `2021-06-09T23:59:59.000-10:00`:
+Example with `2021-06-10T23:59:59.000-10:00`:
 
 ![Calendar](docs/images/calendar_days_max_en-US.jpg)
 
@@ -107,7 +109,7 @@ Example with `2021-06-09T23:59:59.000-10:00`:
 
 Pass an ISO date string that is the minimal valid datetime.
 
-Example with `2021-06-09T00:00:00.000-10:00`:
+Example with `2021-06-10T00:00:00.000-10:00`:
 
 ![Calendar](docs/images/calendar_days_min_en-US.jpg)
 
