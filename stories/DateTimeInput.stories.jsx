@@ -39,6 +39,7 @@ function Template(props) {
 }
 
 const defaultArgs = {
+  autoFocus: true,
   disabled: false,
   format: 'D tt',
   locale: navigator.language,
@@ -54,7 +55,7 @@ EmtpyDateTimeInputStory.args = { ...defaultArgs };
 export const FilledDateTimeInputStory = Template.bind({});
 FilledDateTimeInputStory.args = {
   ...defaultArgs,
-  value: DateTime.now().plus({ day: 2 }).toISO(),
+  value: DateTime.now().set({ hour: 13, minute: 30, second: 10 }).toISO(),
 };
 
 export const DateTimeInputWithMaxStory = Template.bind({});
