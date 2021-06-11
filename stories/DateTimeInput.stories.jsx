@@ -70,6 +70,25 @@ DateTimeInputWithMinStory.args = {
   min: DateTime.now().toISO(),
 };
 
+export const DateTimeInputWithTransformStory = Template.bind({});
+DateTimeInputWithTransformStory.args = {
+  ...defaultArgs,
+  transform: (inputValue, oldValue) => {
+    if (/\d$/.test(oldValue)) {
+      if (/^\d{2}(\/\d{2})?$/.test(inputValue)) {
+        return `${inputValue}/`;
+      }
+      if (/^\d{2}\/\d{2}\/\d{4}$/.test(inputValue)) {
+        return `${inputValue} `;
+      }
+      if (/^\d{2}\/\d{2}\/\d{4} \d{2}(:\d{2})?$/.test(inputValue)) {
+        return `${inputValue}:`;
+      }
+    }
+    return inputValue;
+  },
+};
+
 function CustomDayCell(props) {
   // eslint-disable-next-line no-unused-vars,react/prop-types
   const { dateTime } = props;

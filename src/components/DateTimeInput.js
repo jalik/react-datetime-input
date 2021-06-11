@@ -39,6 +39,7 @@ function DateTimeInput(props) {
     showCalendarOnFocus,
     showTimeZone,
     showWeekNumbers,
+    transform,
     value,
     ...inputProps
   } = props;
@@ -85,12 +86,17 @@ function DateTimeInput(props) {
   }, [disabled, isValueDisabled, name, onChange]);
 
   const handleChangeLocalValue = useCallback((event) => {
-    setLocalValue(event.target.value);
+    // Allow to transform value on the fly.
+    const inputValue = transform
+      ? transform(event.target.value, localValue)
+      : event.target.value;
+    // Update local value.
+    setLocalValue(inputValue);
     // Clear value when field is empty.
-    if (event.target.value === '') {
+    if (inputValue === '') {
       onChange({ target: { name, value: null } });
     }
-  }, [name, onChange]);
+  }, [localValue, name, onChange, transform]);
 
   const handleClickCatcher = useCallback(() => {
     setIsCalendarOpen(false);
@@ -179,6 +185,7 @@ DateTimeInput.propTypes = {
   showCalendarOnFocus: bool,
   showTimeZone: bool,
   showWeekNumbers: bool,
+  transform: func,
   value: string,
 };
 
@@ -198,6 +205,7 @@ DateTimeInput.defaultProps = {
   showCalendarOnFocus: false,
   showTimeZone: false,
   showWeekNumbers: false,
+  transform: null,
   value: null,
 };
 
