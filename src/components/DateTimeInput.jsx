@@ -125,16 +125,11 @@ function DateTimeInput(props) {
 
       <div className="DateTimeInputWrapper">
         <input
-          disabled={disabled}
-          name={name}
-          type="hidden"
-          value={dateIso || ''}
-        />
-        <input
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
           className={classes}
           disabled={disabled}
+          name={name}
           onBlur={handleBlur}
           onChange={handleChangeLocalValue}
           onFocus={handleFocus}
