@@ -2,15 +2,18 @@
   "name": "@jalik/react-datetime-picker",
   "version": "0.1.0",
   "description": "Date and time picker for React",
-  "esnext": "src/index.js",
-  "main": "dist/index.js",
-  "module": "src/index.js",
+  "main": "./dist/index.js",
+  "module": "./esm/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "npm run build-cjs && npm run build-esm",
+    "build-cjs": "babel ./src -d ./dist",
+    "build-esm": "babel --config-file ./babel-esm.config.json ./src -d ./esm",
     "build-storybook": "build-storybook",
-    "clean": "rimraf dist",
-    "dev": "babel --watch src -d dist",
+    "clean": "rimraf ./dist ./esm",
+    "dev": "npm run dev-cjs",
+    "dev-cjs": "babel --watch ./src -d ./dist",
+    "dev-esm": "babel --watch --config-file ./babel-esm.config.json ./src -d ./dist",
     "lint": "eslint --ext js,jsx .",
     "lint-fix": "eslint --fix --ext js,jsx .",
     "prepare": "npm run clean && npm run build && npm run lint",
@@ -44,6 +47,7 @@
   "homepage": "https://github.com/jalik/react-datetime-picker#readme",
   "files": [
     "/dist",
+    "/esm",
     "/src"
   ],
   "dependencies": {

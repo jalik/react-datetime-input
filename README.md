@@ -10,7 +10,7 @@
 
 This lib allows you to add datetime inputs in your React applications with the following advantages.
 
-- Available in CJS and ESM (tree shakeable)
+- Available in CJS and ESM
 - Multiple selection views (year, month, day, time, hour, minute, second)
 - Support for min and max datetime
 - Support for custom day renderer
