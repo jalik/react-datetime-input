@@ -121,12 +121,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 4px;
-  white-space: nowrap;
 }
 
 .CalendarHeader > * {
   flex-basis: 100%;
   flex-grow: 1;
+  white-space: nowrap;
 }
 
 .CalendarHeader .Calendar-MonthButton,
@@ -151,6 +151,7 @@
 .CalendarFooter > * {
   flex-basis: 100%;
   flex-grow: 1;
+  white-space: nowrap;
 }
 
 .CalendarButton {
