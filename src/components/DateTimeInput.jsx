@@ -63,8 +63,10 @@ function DateTimeInput(props) {
   const handleBlur = useCallback((event) => {
     if (onBlur) onBlur(event);
     if (event.target.value === '') {
-      // Clear value if field is empty.
-      onChange({ target: { name, value: null } });
+      if (value !== '') {
+        // Clear value if field is empty.
+        onChange({ target: { name, value: null } });
+      }
     } else if (dateTime && dateTime.isValid) {
       // Update value if local value is valid.
       onChange({ target: { name, value: dateTime.toISO() } });
