@@ -114,7 +114,7 @@ function getSelectYearActionState(state, action) {
     ...state,
     dateTime,
     selectedDateTime,
-    view: CALENDAR_VIEW_MONTH,
+    view: CALENDAR_VIEW_DAY,
   };
 }
 
