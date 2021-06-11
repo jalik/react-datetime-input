@@ -9,12 +9,7 @@ import { CALENDAR_VIEW_MONTH } from '../../calendarViews';
 import { useCalendarContext } from '../CalendarProvider';
 
 function MonthButton() {
-  const {
-    dispatch,
-    state,
-    toFormat,
-  } = useCalendarContext();
-
+  const { dispatch, state, toFormat } = useCalendarContext();
   const { dateTime } = state;
 
   const handleClick = useCallback(() => {
