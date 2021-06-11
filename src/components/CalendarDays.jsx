@@ -56,7 +56,7 @@ function CalendarDays(props) {
 
   const handleClickValue = useCallback((day) => (
     () => {
-      let dt = dateTime.set({
+      let dt = (selectedDateTime || dateTime).set({
         day: day.day,
         month: day.month,
         year: day.year,
@@ -76,7 +76,7 @@ function CalendarDays(props) {
         data: { day: dt },
       });
     }
-  ), [dateTime, dispatch, maxDateTime, minDateTime, onChange]);
+  ), [dateTime, dispatch, maxDateTime, minDateTime, onChange, selectedDateTime]);
 
   return (
     <div className="CalendarDays">
