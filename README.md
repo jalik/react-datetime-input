@@ -1,10 +1,10 @@
-# @jalik/react-datetime-input
+# @jalik/react-datetime-picker
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/jalik/react-datetime-input.svg)
-![GitHub](https://img.shields.io/github/license/jalik/react-datetime-input.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/jalik/react-datetime-input.svg)
-[![GitHub issues](https://img.shields.io/github/issues/jalik/react-datetime-input.svg)](https://github.com/jalik/react-datetime-input/issues)
-![npm](https://img.shields.io/npm/dt/@jalik/react-datetime-input.svg)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/jalik/react-datetime-picker.svg)
+![GitHub](https://img.shields.io/github/license/jalik/react-datetime-picker.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/jalik/react-datetime-picker.svg)
+[![GitHub issues](https://img.shields.io/github/issues/jalik/react-datetime-picker.svg)](https://github.com/jalik/react-datetime-picker/issues)
+![npm](https://img.shields.io/npm/dt/@jalik/react-datetime-picker.svg)
 
 ## Introduction
 
@@ -35,14 +35,14 @@ The code below shows how to add a datetime input field with a default value and 
 changes.
 
 ```js
-import { DateTimeInput } from '@jalik/react-datetime-input';
+import { DateTimeInput } from '@jalik/react-datetime-picker';
 import React, {
   useCallback,
   useState
 } from 'react';
 
 // Don't forget to load default styles.
-import '@jalik/react-datetime-input/src/styles.css';
+import '@jalik/react-datetime-picker/src/styles.css';
 
 function App() {
   const [date, setDate] = useState(new Date().toISOString());
@@ -147,14 +147,14 @@ The example below shows how to disable selection of week-end days.
 import {
   CalendarDay,
   DateTimeInput
-} from '@jalik/react-datetime-input';
+} from '@jalik/react-datetime-picker';
 import React, {
   useCallback,
   useState
 } from 'react';
 
 // Don't forget to load default styles.
-import '@jalik/react-datetime-input/src/styles.css';
+import '@jalik/react-datetime-picker/src/styles.css';
 
 // Custom component that renders week-end days in red.
 function CustomDayCell(props) {

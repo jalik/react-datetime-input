@@ -1,5 +1,5 @@
 {
-  "name": "@jalik/react-datetime-input",
+  "name": "@jalik/react-datetime-picker",
   "version": "0.1.0",
   "description": "Date and time picker for React",
   "esnext": "src/index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jalik/react-datetime-input.git"
+    "url": "git+https://github.com/jalik/react-datetime-picker.git"
   },
   "keywords": [
     "calendar",
@@ -39,9 +39,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jalik/react-datetime-input/issues"
+    "url": "https://github.com/jalik/react-datetime-picker/issues"
   },
-  "homepage": "https://github.com/jalik/react-datetime-input#readme",
+  "homepage": "https://github.com/jalik/react-datetime-picker#readme",
   "files": [
     "/dist",
     "/src"
