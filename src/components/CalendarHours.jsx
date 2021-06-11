@@ -4,7 +4,10 @@
  */
 
 import { DateTime } from 'luxon';
-import { func } from 'prop-types';
+import {
+  func,
+  string,
+} from 'prop-types';
 import React, {
   useCallback,
   useMemo,
@@ -16,7 +19,13 @@ import TimeButton from './buttons/TimeButton';
 import { useCalendarContext } from './CalendarProvider';
 
 function CalendarHours(props) {
-  const { onChange } = props;
+  const {
+    currentItemClassName,
+    itemClassName,
+    onChange,
+    selectedItemClassName,
+  } = props;
+
   const {
     dispatch,
     locale,
@@ -46,16 +55,16 @@ function CalendarHours(props) {
       </div>
       <div className="CalendarBody">
         {hours.map((hour) => {
-          let classes = 'CalendarHours-Hour';
+          let classes = itemClassName || '';
 
           if (now.hour === hour
             && now.hasSame(dateTime, 'day')) {
-            classes += ' CalendarHours-Hour-Current';
+            classes += ` ${currentItemClassName}`;
           }
           if (selectedDateTime
             && selectedDateTime.hour === hour
             && selectedDateTime.hasSame(dateTime, 'day')) {
-            classes += ' CalendarHours-Hour-Selected';
+            classes += ` ${selectedItemClassName}`;
           }
           return (
             <button
@@ -74,9 +83,16 @@ function CalendarHours(props) {
 }
 
 CalendarHours.propTypes = {
+  currentItemClassName: string,
+  itemClassName: string,
   onChange: func.isRequired,
+  selectedItemClassName: string,
 };
 
-CalendarHours.defaultProps = {};
+CalendarHours.defaultProps = {
+  currentItemClassName: 'CalendarHours-Hour-Current',
+  itemClassName: 'CalendarHours-Hour',
+  selectedItemClassName: 'CalendarHours-Hour-Selected',
+};
 
 export default CalendarHours;

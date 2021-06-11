@@ -4,7 +4,10 @@
  */
 
 import { DateTime } from 'luxon';
-import { func } from 'prop-types';
+import {
+  func,
+  string,
+} from 'prop-types';
 import React, {
   useCallback,
   useMemo,
@@ -16,7 +19,13 @@ import TimeButton from './buttons/TimeButton';
 import { useCalendarContext } from './CalendarProvider';
 
 function CalendarSeconds(props) {
-  const { onChange } = props;
+  const {
+    currentItemClassName,
+    itemClassName,
+    onChange,
+    selectedItemClassName,
+  } = props;
+
   const {
     dispatch,
     locale,
@@ -46,16 +55,16 @@ function CalendarSeconds(props) {
       </div>
       <div className="CalendarBody">
         {seconds.map((second) => {
-          let classes = 'CalendarSeconds-Second';
+          let classes = itemClassName || '';
 
           if (now.second === second
             && now.hasSame(dateTime, 'minute')) {
-            classes += ' CalendarSeconds-Second-Current';
+            classes += ` ${currentItemClassName}`;
           }
           if (selectedDateTime
             && selectedDateTime.second === second
             && selectedDateTime.hasSame(dateTime, 'minute')) {
-            classes += ' CalendarSeconds-Second-Selected';
+            classes += ` ${selectedItemClassName}`;
           }
           return (
             <button
@@ -74,9 +83,16 @@ function CalendarSeconds(props) {
 }
 
 CalendarSeconds.propTypes = {
+  currentItemClassName: string,
+  itemClassName: string,
   onChange: func.isRequired,
+  selectedItemClassName: string,
 };
 
-CalendarSeconds.defaultProps = {};
+CalendarSeconds.defaultProps = {
+  currentItemClassName: 'CalendarSeconds-Second-Current',
+  itemClassName: 'CalendarSeconds-Second',
+  selectedItemClassName: 'CalendarSeconds-Second-Selected',
+};
 
 export default CalendarSeconds;

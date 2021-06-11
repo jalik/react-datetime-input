@@ -7,6 +7,7 @@ import { DateTime } from 'luxon';
 import {
   func,
   number,
+  string,
 } from 'prop-types';
 import React, {
   useCallback,
@@ -22,7 +23,14 @@ import YearButton from './buttons/YearButton';
 import { useCalendarContext } from './CalendarProvider';
 
 function CalendarYears(props) {
-  const { onChange, size } = props;
+  const {
+    currentItemClassName,
+    onChange,
+    selectedItemClassName,
+    size,
+    itemClassName,
+  } = props;
+
   const {
     dispatch,
     locale,
@@ -55,13 +63,13 @@ function CalendarYears(props) {
       </div>
       <div className="CalendarBody">
         {years.map((year) => {
-          let classes = 'CalendarYears-Year';
+          let classes = itemClassName || '';
 
           if (now.year === year) {
-            classes += ' CalendarYears-Year-Current';
+            classes += ` ${currentItemClassName}`;
           }
           if (selectedDateTime && selectedDateTime.year === year) {
-            classes += ' CalendarYears-Year-Selected';
+            classes += ` ${selectedItemClassName}`;
           }
           return (
             <button
@@ -80,11 +88,17 @@ function CalendarYears(props) {
 }
 
 CalendarYears.propTypes = {
+  currentItemClassName: string,
+  itemClassName: string,
   onChange: func.isRequired,
+  selectedItemClassName: string,
   size: number,
 };
 
 CalendarYears.defaultProps = {
+  currentItemClassName: 'CalendarYears-Year-Current',
+  itemClassName: 'CalendarYears-Year',
+  selectedItemClassName: 'CalendarYears-Year-Selected',
   size: 12,
 };
 

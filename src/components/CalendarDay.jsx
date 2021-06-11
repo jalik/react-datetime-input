@@ -13,24 +13,27 @@ import { useCalendarContext } from './CalendarProvider';
 
 function CalendarDay(props) {
   const {
-    className,
+    currentItemClassName,
     currentMonth,
     dateTime,
+    itemClassName,
+    otherClassName,
     selectedDateTime,
+    selectedItemClassName,
     ...otherProps
   } = props;
 
   const { numberFormatter } = useCalendarContext();
-  let classes = className || '';
+  let classes = itemClassName || '';
 
-  if (!dateTime.hasSame(currentMonth, 'month')) {
-    classes += ' CalendarDays-Other';
-  }
   if (dateTime.hasSame(DateTime.now(), 'day')) {
-    classes += ' CalendarDays-Current';
+    classes += ` ${currentItemClassName}`;
   }
   if (selectedDateTime && dateTime.hasSame(selectedDateTime, 'day')) {
-    classes += ' CalendarDays-Selected';
+    classes += ` ${selectedItemClassName}`;
+  }
+  if (!dateTime.hasSame(currentMonth, 'month')) {
+    classes += ` ${otherClassName}`;
   }
   return (
     <button
@@ -45,15 +48,21 @@ function CalendarDay(props) {
 }
 
 CalendarDay.propTypes = {
-  className: string,
+  currentItemClassName: string,
   currentMonth: instanceOf(DateTime).isRequired,
   dateTime: instanceOf(DateTime).isRequired,
+  itemClassName: string,
+  otherClassName: string,
   selectedDateTime: instanceOf(DateTime),
+  selectedItemClassName: string,
 };
 
 CalendarDay.defaultProps = {
-  className: 'CalendarDays-Day',
+  currentItemClassName: ' CalendarDays-Current',
+  itemClassName: 'CalendarDays-Day',
+  otherClassName: 'CalendarDays-Other',
   selectedDateTime: null,
+  selectedItemClassName: 'CalendarDays-Selected',
 };
 
 export default CalendarDay;

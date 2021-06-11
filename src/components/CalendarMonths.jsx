@@ -4,7 +4,10 @@
  */
 
 import { DateTime } from 'luxon';
-import { func } from 'prop-types';
+import {
+  func,
+  string,
+} from 'prop-types';
 import React, {
   useCallback,
   useMemo,
@@ -19,7 +22,13 @@ import YearButton from './buttons/YearButton';
 import { useCalendarContext } from './CalendarProvider';
 
 function CalendarMonths(props) {
-  const { onChange } = props;
+  const {
+    currentItemClassName,
+    itemClassName,
+    onChange,
+    selectedItemClassName,
+  } = props;
+
   const { dispatch, locale, state } = useCalendarContext();
   const { dateTime, selectedDateTime } = state;
   const now = DateTime.now().setLocale(locale);
@@ -47,16 +56,16 @@ function CalendarMonths(props) {
       <div className="CalendarBody">
         {months.map((month, index) => {
           const monthNumber = index + 1;
-          let classes = 'CalendarMonths-Month';
+          let classes = itemClassName || '';
 
           if (now.month === monthNumber
             && now.hasSame(dateTime, 'year')) {
-            classes += ' CalendarMonths-Month-Current';
+            classes += ` ${currentItemClassName}`;
           }
           if (selectedDateTime
             && selectedDateTime.month === monthNumber
             && selectedDateTime.hasSame(dateTime, 'month')) {
-            classes += ' CalendarMonths-Month-Selected';
+            classes += ` ${selectedItemClassName}`;
           }
           return (
             <button
@@ -75,9 +84,16 @@ function CalendarMonths(props) {
 }
 
 CalendarMonths.propTypes = {
+  currentItemClassName: string,
+  itemClassName: string,
   onChange: func.isRequired,
+  selectedItemClassName: string,
 };
 
-CalendarMonths.defaultProps = {};
+CalendarMonths.defaultProps = {
+  currentItemClassName: 'CalendarMonths-Month-Current',
+  itemClassName: 'CalendarMonths-Month',
+  selectedItemClassName: 'CalendarMonths-Month-Selected',
+};
 
 export default CalendarMonths;
