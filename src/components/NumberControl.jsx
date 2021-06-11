@@ -4,17 +4,25 @@
  */
 
 import {
+  bool,
   func,
   node,
 } from 'prop-types';
 import React from 'react';
 
 function NumberControl(props) {
-  const { onClickMinus, onClickPlus, value } = props;
+  const {
+    disabled,
+    onClickMinus,
+    onClickPlus,
+    onClickValue,
+    value,
+  } = props;
   return (
     <div className="CalendarTime-Control">
       <button
         className="CalendarTime-Control-Plus"
+        disabled={disabled}
         onClick={onClickPlus}
         type="button"
       >
@@ -22,13 +30,15 @@ function NumberControl(props) {
       </button>
       <button
         className="CalendarTime-Control-Value"
-        disabled
+        disabled={disabled}
+        onClick={onClickValue}
         type="button"
       >
         {value}
       </button>
       <button
         className="CalendarTime-Control-Minus"
+        disabled={disabled}
         onClick={onClickMinus}
         type="button"
       >
@@ -39,9 +49,15 @@ function NumberControl(props) {
 }
 
 NumberControl.propTypes = {
+  disabled: bool,
   onClickMinus: func.isRequired,
   onClickPlus: func.isRequired,
+  onClickValue: func.isRequired,
   value: node.isRequired,
+};
+
+NumberControl.defaultProps = {
+  disabled: false,
 };
 
 export default NumberControl;

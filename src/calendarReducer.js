@@ -7,13 +7,17 @@ import { DateTime } from 'luxon';
 import {
   CALENDAR_MODE_DAY,
   CALENDAR_MODE_MONTH,
+  CALENDAR_MODE_TIME,
   CALENDAR_MODE_YEAR,
 } from './modes';
 
 export const ACTION_NEXT = 'NEXT';
 export const ACTION_PREVIOUS = 'PREVIOUS';
 export const ACTION_SELECT_DAY = 'SELECT_DAY';
+export const ACTION_SELECT_HOUR = 'SELECT_HOUR';
+export const ACTION_SELECT_MINUTE = 'SELECT_MINUTE';
 export const ACTION_SELECT_MONTH = 'SELECT_MONTH';
+export const ACTION_SELECT_SECOND = 'SELECT_SECOND';
 export const ACTION_SELECT_YEAR = 'SELECT_YEAR';
 export const ACTION_SET_DATETIME = 'SET_DATETIME';
 export const ACTION_SET_MODE = 'SET_MODE';
@@ -52,6 +56,39 @@ function getSelectDayActionState(state, action) {
     ...state,
     dateTime: day,
     selectedDateTime: day,
+  };
+}
+
+function getSelectHourActionState(state, action) {
+  const { hour } = action.data;
+  const datetime = (state.selectedDateTime || state.dateTime).set({ hour });
+  return {
+    ...state,
+    dateTime: datetime,
+    mode: CALENDAR_MODE_TIME,
+    selectedDateTime: datetime,
+  };
+}
+
+function getSelectMinuteActionState(state, action) {
+  const { minute } = action.data;
+  const datetime = (state.selectedDateTime || state.dateTime).set({ minute });
+  return {
+    ...state,
+    dateTime: datetime,
+    mode: CALENDAR_MODE_TIME,
+    selectedDateTime: datetime,
+  };
+}
+
+function getSelectSecondActionState(state, action) {
+  const { second } = action.data;
+  const datetime = (state.selectedDateTime || state.dateTime).set({ second });
+  return {
+    ...state,
+    dateTime: datetime,
+    mode: CALENDAR_MODE_TIME,
+    selectedDateTime: datetime,
   };
 }
 
@@ -102,8 +139,17 @@ function calendarReducer(state, action) {
   if (type === ACTION_SELECT_DAY) {
     return getSelectDayActionState(state, action);
   }
+  if (type === ACTION_SELECT_HOUR) {
+    return getSelectHourActionState(state, action);
+  }
+  if (type === ACTION_SELECT_MINUTE) {
+    return getSelectMinuteActionState(state, action);
+  }
   if (type === ACTION_SELECT_MONTH) {
     return getSelectMonthActionState(state, action);
+  }
+  if (type === ACTION_SELECT_SECOND) {
+    return getSelectSecondActionState(state, action);
   }
   if (type === ACTION_SELECT_YEAR) {
     return getSelectYearActionState(state, action);

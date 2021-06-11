@@ -16,14 +16,20 @@ import React, {
 import { getDefaultLanguage } from '../lib';
 import {
   CALENDAR_MODE_DAY,
+  CALENDAR_MODE_HOUR,
+  CALENDAR_MODE_MINUTE,
   CALENDAR_MODE_MONTH,
+  CALENDAR_MODE_SECOND,
   CALENDAR_MODE_TIME,
   CALENDAR_MODE_YEAR,
 } from '../modes';
 import useCalendar from '../useCalendar';
 import CalendarDays from './CalendarDays';
+import CalendarHours from './CalendarHours';
+import CalendarMinutes from './CalendarMinutes';
 import CalendarMonths from './CalendarMonths';
 import CalendarProvider from './CalendarProvider';
+import CalendarSeconds from './CalendarSeconds';
 import CalendarTime from './CalendarTime';
 import CalendarYears from './CalendarYears';
 
@@ -70,14 +76,10 @@ function Calendar(props) {
       );
     }
     if (state.mode === CALENDAR_MODE_MONTH) {
-      return (
-        <CalendarMonths onChange={handleChange} />
-      );
+      return <CalendarMonths onChange={handleChange} />;
     }
     if (state.mode === CALENDAR_MODE_YEAR) {
-      return (
-        <CalendarYears onChange={handleChange} />
-      );
+      return <CalendarYears onChange={handleChange} />;
     }
     if (state.mode === CALENDAR_MODE_TIME) {
       return (
@@ -86,6 +88,15 @@ function Calendar(props) {
           showTimeZone={showTimeZone}
         />
       );
+    }
+    if (state.mode === CALENDAR_MODE_HOUR) {
+      return <CalendarHours onChange={handleChange} />;
+    }
+    if (state.mode === CALENDAR_MODE_MINUTE) {
+      return <CalendarMinutes onChange={handleChange} />;
+    }
+    if (state.mode === CALENDAR_MODE_SECOND) {
+      return <CalendarSeconds onChange={handleChange} />;
     }
     return null;
   }, [handleChange, maxDate, minDate, renderDay, showTimeZone, showWeekNumbers, state.mode]);
@@ -113,7 +124,9 @@ Calendar.propTypes = {
   locale: string,
   mode: oneOf([
     CALENDAR_MODE_DAY,
+    CALENDAR_MODE_MINUTE,
     CALENDAR_MODE_MONTH,
+    CALENDAR_MODE_SECOND,
     CALENDAR_MODE_TIME,
     CALENDAR_MODE_YEAR,
   ]),

@@ -14,7 +14,22 @@ export function getDefaultLanguage() {
 }
 
 /**
- * Returns the months list using a locale.
+ * Returns a list of numbers.
+ * @param {number} max
+ * @param {number} increment
+ * @return {number[]}
+ */
+export function getNumbers(max, increment = 1) {
+  const numbers = [];
+
+  for (let i = 0; i < max; i += increment) {
+    numbers.push(i);
+  }
+  return numbers;
+}
+
+/**
+ * Returns the months list.
  * @param {string} locale
  * @param {'numeric','2-digit','long','short','narrow'} format
  * @return {string[]}

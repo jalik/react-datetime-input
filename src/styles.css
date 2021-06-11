@@ -88,21 +88,38 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.CalendarHours .CalendarBody,
+.CalendarMinutes .CalendarBody,
+.CalendarMonths .CalendarBody,
+.CalendarSeconds .CalendarBody,
+.CalendarYears .CalendarBody {
+  flex-direction: column;
+  max-height: 13em;
+  overflow: auto;
+  align-items: initial;
+}
+
+.Calendar .CalendarHours-Hour,
+.Calendar .CalendarMinutes-Minute,
 .Calendar .CalendarMonths-Month,
+.Calendar .CalendarSeconds-Second,
 .Calendar .CalendarYears-Year {
-  flex-basis: 40%;
+  flex-basis: 30%;
   flex-grow: 1;
 }
 
 .Calendar .CalendarDays-Day,
+.Calendar .CalendarHours-Hour,
+.Calendar .CalendarMinutes-Minute,
 .Calendar .CalendarMonths-Month,
+.Calendar .CalendarSeconds-Second,
 .Calendar .CalendarYears-Year {
   border: solid 1px transparent;
 }
 
 .CalendarHeader {
   display: flex;
-  align-content: center;
+  align-items: center;
   margin-bottom: 4px;
 }
 
