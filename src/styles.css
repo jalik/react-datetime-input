@@ -51,7 +51,7 @@
   font-family: Roboto, sans-serif;
   font-size: 1rem;
   line-height: 1rem;
-  min-width: 240px;
+  min-width: 230px;
   padding: 5px;
   width: min-content;
 }
@@ -121,6 +121,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 4px;
+  white-space: nowrap;
 }
 
 .CalendarHeader > * {
