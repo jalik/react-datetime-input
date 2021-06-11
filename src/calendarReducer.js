@@ -5,11 +5,11 @@
 
 import { DateTime } from 'luxon';
 import {
-  CALENDAR_MODE_DAY,
-  CALENDAR_MODE_MONTH,
-  CALENDAR_MODE_TIME,
-  CALENDAR_MODE_YEAR,
-} from './modes';
+  CALENDAR_VIEW_DAY,
+  CALENDAR_VIEW_MONTH,
+  CALENDAR_VIEW_TIME,
+  CALENDAR_VIEW_YEAR,
+} from './calendarViews';
 
 export const ACTION_NEXT = 'NEXT';
 export const ACTION_PREVIOUS = 'PREVIOUS';
@@ -20,18 +20,18 @@ export const ACTION_SELECT_MONTH = 'SELECT_MONTH';
 export const ACTION_SELECT_SECOND = 'SELECT_SECOND';
 export const ACTION_SELECT_YEAR = 'SELECT_YEAR';
 export const ACTION_SET_DATETIME = 'SET_DATETIME';
-export const ACTION_SET_MODE = 'SET_MODE';
 export const ACTION_SET_SELECTED_DATETIME = 'SET_SELECTED_DATETIME';
+export const ACTION_SET_VIEW = 'SET_VIEW';
 export const ACTION_TODAY = 'TODAY';
 
 function getNextActionState(state) {
   let { dateTime } = state;
 
-  if (state.mode === CALENDAR_MODE_YEAR) {
+  if (state.view === CALENDAR_VIEW_YEAR) {
     dateTime = state.dateTime.plus({ year: 10 });
-  } else if (state.mode === CALENDAR_MODE_MONTH) {
+  } else if (state.view === CALENDAR_VIEW_MONTH) {
     dateTime = state.dateTime.plus({ year: 1 });
-  } else if (state.mode === CALENDAR_MODE_DAY) {
+  } else if (state.view === CALENDAR_VIEW_DAY) {
     dateTime = state.dateTime.plus({ month: 1 });
   }
   return { ...state, dateTime };
@@ -40,11 +40,11 @@ function getNextActionState(state) {
 function getPreviousActionState(state) {
   let { dateTime } = state;
 
-  if (state.mode === CALENDAR_MODE_YEAR) {
+  if (state.view === CALENDAR_VIEW_YEAR) {
     dateTime = state.dateTime.minus({ year: 10 });
-  } else if (state.mode === CALENDAR_MODE_MONTH) {
+  } else if (state.view === CALENDAR_VIEW_MONTH) {
     dateTime = state.dateTime.minus({ year: 1 });
-  } else if (state.mode === CALENDAR_MODE_DAY) {
+  } else if (state.view === CALENDAR_VIEW_DAY) {
     dateTime = state.dateTime.minus({ month: 1 });
   }
   return { ...state, dateTime };
@@ -65,8 +65,8 @@ function getSelectHourActionState(state, action) {
   return {
     ...state,
     dateTime: datetime,
-    mode: CALENDAR_MODE_TIME,
     selectedDateTime: datetime,
+    view: CALENDAR_VIEW_TIME,
   };
 }
 
@@ -76,8 +76,8 @@ function getSelectMinuteActionState(state, action) {
   return {
     ...state,
     dateTime: datetime,
-    mode: CALENDAR_MODE_TIME,
     selectedDateTime: datetime,
+    view: CALENDAR_VIEW_TIME,
   };
 }
 
@@ -87,8 +87,8 @@ function getSelectSecondActionState(state, action) {
   return {
     ...state,
     dateTime: datetime,
-    mode: CALENDAR_MODE_TIME,
     selectedDateTime: datetime,
+    view: CALENDAR_VIEW_TIME,
   };
 }
 
@@ -100,8 +100,8 @@ function getSelectMonthActionState(state, action) {
   return {
     ...state,
     dateTime,
-    mode: CALENDAR_MODE_DAY,
     selectedDateTime,
+    view: CALENDAR_VIEW_DAY,
   };
 }
 
@@ -113,8 +113,8 @@ function getSelectYearActionState(state, action) {
   return {
     ...state,
     dateTime,
-    mode: CALENDAR_MODE_MONTH,
     selectedDateTime,
+    view: CALENDAR_VIEW_MONTH,
   };
 }
 
@@ -160,8 +160,8 @@ function calendarReducer(state, action) {
   if (type === ACTION_SET_SELECTED_DATETIME) {
     return getSetSelectedDateTimeActionState(state, action);
   }
-  if (type === ACTION_SET_MODE) {
-    return { ...state, mode: data.mode };
+  if (type === ACTION_SET_VIEW) {
+    return { ...state, view: data.view };
   }
   if (type === ACTION_TODAY) {
     const dateTime = DateTime.now().setLocale(state.dateTime.locale);

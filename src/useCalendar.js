@@ -15,8 +15,8 @@ function useCalendar(props) {
   const {
     date,
     locale,
-    mode,
     selectedDate,
+    view,
   } = props;
 
   const dateTime = useMemo(() => (
@@ -34,8 +34,8 @@ function useCalendar(props) {
 
   const initialState = {
     dateTime,
-    mode,
     selectedDateTime,
+    view,
   };
 
   const numberFormatter = useMemo(() => (

@@ -13,16 +13,16 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import { getDefaultLanguage } from '../lib';
 import {
-  CALENDAR_MODE_DAY,
-  CALENDAR_MODE_HOUR,
-  CALENDAR_MODE_MINUTE,
-  CALENDAR_MODE_MONTH,
-  CALENDAR_MODE_SECOND,
-  CALENDAR_MODE_TIME,
-  CALENDAR_MODE_YEAR,
-} from '../modes';
+  CALENDAR_VIEW_DAY,
+  CALENDAR_VIEW_HOUR,
+  CALENDAR_VIEW_MINUTE,
+  CALENDAR_VIEW_MONTH,
+  CALENDAR_VIEW_SECOND,
+  CALENDAR_VIEW_TIME,
+  CALENDAR_VIEW_YEAR,
+} from '../calendarViews';
+import { getDefaultLanguage } from '../lib';
 import useCalendar from '../useCalendar';
 import CalendarDays from './CalendarDays';
 import CalendarHours from './CalendarHours';
@@ -40,19 +40,19 @@ function Calendar(props) {
     maxDate,
     minDate,
     locale,
-    mode,
     onChange,
     renderDay,
     selectedDate,
     showTimeZone,
     showWeekNumbers,
+    view,
   } = props;
 
   const context = useCalendar({
     date,
     locale,
-    mode,
     selectedDate,
+    view,
   });
   const { state } = context;
 
@@ -63,7 +63,7 @@ function Calendar(props) {
   }, [disabled, onChange]);
 
   const days = useMemo(() => {
-    if (state.mode === CALENDAR_MODE_DAY) {
+    if (state.view === CALENDAR_VIEW_DAY) {
       return (
         <CalendarDays
           maxDate={maxDate}
@@ -75,13 +75,13 @@ function Calendar(props) {
         />
       );
     }
-    if (state.mode === CALENDAR_MODE_MONTH) {
+    if (state.view === CALENDAR_VIEW_MONTH) {
       return <CalendarMonths onChange={handleChange} />;
     }
-    if (state.mode === CALENDAR_MODE_YEAR) {
+    if (state.view === CALENDAR_VIEW_YEAR) {
       return <CalendarYears onChange={handleChange} />;
     }
-    if (state.mode === CALENDAR_MODE_TIME) {
+    if (state.view === CALENDAR_VIEW_TIME) {
       return (
         <CalendarTime
           onChange={handleChange}
@@ -89,17 +89,17 @@ function Calendar(props) {
         />
       );
     }
-    if (state.mode === CALENDAR_MODE_HOUR) {
+    if (state.view === CALENDAR_VIEW_HOUR) {
       return <CalendarHours onChange={handleChange} />;
     }
-    if (state.mode === CALENDAR_MODE_MINUTE) {
+    if (state.view === CALENDAR_VIEW_MINUTE) {
       return <CalendarMinutes onChange={handleChange} />;
     }
-    if (state.mode === CALENDAR_MODE_SECOND) {
+    if (state.view === CALENDAR_VIEW_SECOND) {
       return <CalendarSeconds onChange={handleChange} />;
     }
     return null;
-  }, [handleChange, maxDate, minDate, renderDay, showTimeZone, showWeekNumbers, state.mode]);
+  }, [handleChange, maxDate, minDate, renderDay, showTimeZone, showWeekNumbers, state.view]);
 
   return (
     <CalendarProvider context={context}>
@@ -122,19 +122,19 @@ Calendar.propTypes = {
   maxDate: string,
   minDate: string,
   locale: string,
-  mode: oneOf([
-    CALENDAR_MODE_DAY,
-    CALENDAR_MODE_MINUTE,
-    CALENDAR_MODE_MONTH,
-    CALENDAR_MODE_SECOND,
-    CALENDAR_MODE_TIME,
-    CALENDAR_MODE_YEAR,
-  ]),
   onChange: func.isRequired,
   renderDay: func,
   selectedDate: string,
   showTimeZone: bool,
   showWeekNumbers: bool,
+  view: oneOf([
+    CALENDAR_VIEW_DAY,
+    CALENDAR_VIEW_MINUTE,
+    CALENDAR_VIEW_MONTH,
+    CALENDAR_VIEW_SECOND,
+    CALENDAR_VIEW_TIME,
+    CALENDAR_VIEW_YEAR,
+  ]),
 };
 
 Calendar.defaultProps = {
@@ -143,11 +143,11 @@ Calendar.defaultProps = {
   maxDate: null,
   minDate: null,
   locale: getDefaultLanguage(),
-  mode: CALENDAR_MODE_DAY,
   renderDay: null,
   selectedDate: null,
   showTimeZone: false,
   showWeekNumbers: false,
+  view: CALENDAR_VIEW_DAY,
 };
 
 export default Calendar;

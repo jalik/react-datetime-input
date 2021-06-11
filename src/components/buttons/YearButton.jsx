@@ -4,8 +4,8 @@
  */
 
 import React, { useCallback } from 'react';
-import { ACTION_SET_MODE } from '../../calendarReducer';
-import { CALENDAR_MODE_YEAR } from '../../modes';
+import { ACTION_SET_VIEW } from '../../calendarReducer';
+import { CALENDAR_VIEW_YEAR } from '../../calendarViews';
 import { useCalendarContext } from '../CalendarProvider';
 
 function YearButton() {
@@ -14,8 +14,8 @@ function YearButton() {
 
   const handleClick = useCallback(() => {
     dispatch({
-      type: ACTION_SET_MODE,
-      data: { mode: CALENDAR_MODE_YEAR },
+      type: ACTION_SET_VIEW,
+      data: { view: CALENDAR_VIEW_YEAR },
     });
   }, [dispatch]);
 

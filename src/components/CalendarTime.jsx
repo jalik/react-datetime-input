@@ -12,14 +12,14 @@ import React, {
   useMemo,
 } from 'react';
 import {
-  ACTION_SET_MODE,
   ACTION_SET_SELECTED_DATETIME,
+  ACTION_SET_VIEW,
 } from '../calendarReducer';
 import {
-  CALENDAR_MODE_HOUR,
-  CALENDAR_MODE_MINUTE,
-  CALENDAR_MODE_SECOND,
-} from '../modes';
+  CALENDAR_VIEW_HOUR,
+  CALENDAR_VIEW_MINUTE,
+  CALENDAR_VIEW_SECOND,
+} from '../calendarViews';
 import DateButton from './buttons/DateButton';
 import ZoneButton from './buttons/ZoneButton';
 import { useCalendarContext } from './CalendarProvider';
@@ -56,8 +56,8 @@ function CalendarTime(props) {
   const handleClickValue = useCallback((unit) => (
     () => {
       dispatch({
-        type: ACTION_SET_MODE,
-        data: { mode: unit },
+        type: ACTION_SET_VIEW,
+        data: { view: unit },
       });
     }
   ), [dispatch]);
@@ -72,21 +72,21 @@ function CalendarTime(props) {
         <Control
           onClickMinus={handleClickMinus('hour')}
           onClickPlus={handleClickPlus('hour')}
-          onClickValue={handleClickValue(CALENDAR_MODE_HOUR)}
+          onClickValue={handleClickValue(CALENDAR_VIEW_HOUR)}
           value={toFormat(dateTime, 'HH')}
         />
         <span>:</span>
         <Control
           onClickMinus={handleClickMinus('minute')}
           onClickPlus={handleClickPlus('minute')}
-          onClickValue={handleClickValue(CALENDAR_MODE_MINUTE)}
+          onClickValue={handleClickValue(CALENDAR_VIEW_MINUTE)}
           value={toFormat(dateTime, 'mm')}
         />
         <span>:</span>
         <Control
           onClickMinus={handleClickMinus('second')}
           onClickPlus={handleClickPlus('second')}
-          onClickValue={handleClickValue(CALENDAR_MODE_SECOND)}
+          onClickValue={handleClickValue(CALENDAR_VIEW_SECOND)}
           value={toFormat(dateTime, 'ss')}
         />
         <span>{toFormat(dateTime, 'a')}</span>

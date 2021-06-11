@@ -7,8 +7,8 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import { ACTION_SET_MODE } from '../../calendarReducer';
-import { CALENDAR_MODE_DAY } from '../../modes';
+import { ACTION_SET_VIEW } from '../../calendarReducer';
+import { CALENDAR_VIEW_DAY } from '../../calendarViews';
 import { useCalendarContext } from '../CalendarProvider';
 
 function DateButton() {
@@ -24,8 +24,8 @@ function DateButton() {
 
   const handleClick = useCallback(() => {
     dispatch({
-      type: ACTION_SET_MODE,
-      data: { mode: CALENDAR_MODE_DAY },
+      type: ACTION_SET_VIEW,
+      data: { view: CALENDAR_VIEW_DAY },
     });
   }, [dispatch]);
 

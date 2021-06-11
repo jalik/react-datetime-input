@@ -15,10 +15,14 @@ import React, {
   useContext,
 } from 'react';
 import {
-  CALENDAR_MODE_DAY,
-  CALENDAR_MODE_MONTH,
-  CALENDAR_MODE_YEAR,
-} from '../modes';
+  CALENDAR_VIEW_DAY,
+  CALENDAR_VIEW_HOUR,
+  CALENDAR_VIEW_MINUTE,
+  CALENDAR_VIEW_MONTH,
+  CALENDAR_VIEW_SECOND,
+  CALENDAR_VIEW_TIME,
+  CALENDAR_VIEW_YEAR,
+} from '../calendarViews';
 
 const CalendarContext = createContext(null);
 
@@ -49,12 +53,16 @@ CalendarProvider.propTypes = {
   children: node,
   context: shape({
     dateTime: instanceOf(DateTime),
-    mode: oneOf([
-      CALENDAR_MODE_DAY,
-      CALENDAR_MODE_MONTH,
-      CALENDAR_MODE_YEAR,
-    ]),
     selectedDateTime: instanceOf(DateTime),
+    view: oneOf([
+      CALENDAR_VIEW_DAY,
+      CALENDAR_VIEW_HOUR,
+      CALENDAR_VIEW_MINUTE,
+      CALENDAR_VIEW_MONTH,
+      CALENDAR_VIEW_SECOND,
+      CALENDAR_VIEW_TIME,
+      CALENDAR_VIEW_YEAR,
+    ]),
   }).isRequired,
 };
 

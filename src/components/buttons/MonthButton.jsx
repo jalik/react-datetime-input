@@ -4,8 +4,8 @@
  */
 
 import React, { useCallback } from 'react';
-import { ACTION_SET_MODE } from '../../calendarReducer';
-import { CALENDAR_MODE_MONTH } from '../../modes';
+import { ACTION_SET_VIEW } from '../../calendarReducer';
+import { CALENDAR_VIEW_MONTH } from '../../calendarViews';
 import { useCalendarContext } from '../CalendarProvider';
 
 function MonthButton() {
@@ -19,8 +19,8 @@ function MonthButton() {
 
   const handleClick = useCallback(() => {
     dispatch({
-      type: ACTION_SET_MODE,
-      data: { mode: CALENDAR_MODE_MONTH },
+      type: ACTION_SET_VIEW,
+      data: { view: CALENDAR_VIEW_MONTH },
     });
   }, [dispatch]);
 

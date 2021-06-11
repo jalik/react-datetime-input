@@ -7,8 +7,8 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import { ACTION_SET_MODE } from '../../calendarReducer';
-import { CALENDAR_MODE_TIME } from '../../modes';
+import { ACTION_SET_VIEW } from '../../calendarReducer';
+import { CALENDAR_VIEW_TIME } from '../../calendarViews';
 import { useCalendarContext } from '../CalendarProvider';
 
 function TimeButton() {
@@ -24,8 +24,8 @@ function TimeButton() {
 
   const handleClick = useCallback(() => {
     dispatch({
-      type: ACTION_SET_MODE,
-      data: { mode: CALENDAR_MODE_TIME },
+      type: ACTION_SET_VIEW,
+      data: { view: CALENDAR_VIEW_TIME },
     });
   }, [dispatch]);
 
