@@ -1,6 +1,6 @@
 {
   "name": "@jalik/react-datetime-picker",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Date and time picker for React",
   "main": "./dist/index.js",
   "module": "./esm/index.js",
