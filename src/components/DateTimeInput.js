@@ -35,6 +35,7 @@ function DateTimeInput(props) {
     onBlur,
     onChange,
     onFocus,
+    onKeyDown,
     renderDay,
     showCalendarIcon,
     showCalendarOnFocus,
@@ -106,6 +107,14 @@ function DateTimeInput(props) {
     }
   }, [onFocus, showCalendarOnFocus]);
 
+  const handleKeyDown = useCallback((event) => {
+    // Close calendar when user press a key.
+    setIsCalendarOpen(false);
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  }, [onKeyDown]);
+
   const toggleCalendar = useCallback(() => {
     setIsCalendarOpen((s) => !s);
   }, []);
@@ -147,6 +156,7 @@ function DateTimeInput(props) {
         onBlur={handleBlur}
         onChange={handleChangeLocalValue}
         onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
         value={localValue || ''}
       />
 
@@ -187,6 +197,7 @@ DateTimeInput.propTypes = {
   onBlur: func,
   onChange: func,
   onFocus: func,
+  onKeyDown: func,
   renderDay: func,
   showCalendarIcon: bool,
   showCalendarOnFocus: bool,
@@ -207,6 +218,7 @@ DateTimeInput.defaultProps = {
   onBlur: null,
   onChange: null,
   onFocus: null,
+  onKeyDown: null,
   renderDay: null,
   showCalendarIcon: false,
   showCalendarOnFocus: false,
