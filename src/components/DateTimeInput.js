@@ -14,6 +14,7 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import { getDefaultLanguage } from '../lib';
@@ -98,10 +99,6 @@ function DateTimeInput(props) {
     }
   }, [localValue, name, onChange, transform]);
 
-  const handleClickCatcher = useCallback(() => {
-    setIsCalendarOpen(false);
-  }, []);
-
   const handleFocus = useCallback((event) => {
     if (onFocus) onFocus(event);
     if (showCalendarOnFocus) {
@@ -118,53 +115,63 @@ function DateTimeInput(props) {
     setLocalValue(dt.isValid ? dt.toFormat(format) : null);
   }, [format, locale, value]);
 
+  const wrapperRef = useRef();
+  useEffect(() => {
+    const clickListener = (event) => {
+      // Close calendar if user clicks outside.
+      if (!wrapperRef.current.contains(event.target)) {
+        setIsCalendarOpen(false);
+      }
+    };
+    if (isCalendarOpen && typeof document !== 'undefined') {
+      document.addEventListener('mousedown', clickListener);
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('mousedown', clickListener);
+      }
+    };
+  }, [isCalendarOpen, setIsCalendarOpen]);
+
   return (
-    <>
-      {isCalendarOpen ? (
-        // eslint-disable-next-line max-len
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/control-has-associated-label,jsx-a11y/no-static-element-interactions
-        <div
-          className="DateTimeInputCatcher"
-          onClick={handleClickCatcher}
+    <div
+      className="DateTimeInputWrapper"
+      ref={wrapperRef}
+    >
+      <input
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...inputProps}
+        className={classes}
+        disabled={disabled}
+        name={name}
+        onBlur={handleBlur}
+        onChange={handleChangeLocalValue}
+        onFocus={handleFocus}
+        value={localValue || ''}
+      />
+
+      {showCalendarIcon ? (
+        <CalendarButton
+          icon={calendarIcon}
+          onClick={toggleCalendar}
         />
       ) : null}
 
-      <div className="DateTimeInputWrapper">
-        <input
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...inputProps}
-          className={classes}
+      {isCalendarOpen ? (
+        <Calendar
+          date={dateIso}
           disabled={disabled}
-          name={name}
-          onBlur={handleBlur}
-          onChange={handleChangeLocalValue}
-          onFocus={handleFocus}
-          value={localValue || ''}
+          maxDate={max}
+          minDate={min}
+          locale={locale}
+          onChange={handleChange}
+          renderDay={renderDay}
+          selectedDate={dateIso}
+          showTimeZone={showTimeZone}
+          showWeekNumbers={showWeekNumbers}
         />
-
-        {showCalendarIcon ? (
-          <CalendarButton
-            icon={calendarIcon}
-            onClick={toggleCalendar}
-          />
-        ) : null}
-
-        {isCalendarOpen ? (
-          <Calendar
-            date={dateIso}
-            disabled={disabled}
-            maxDate={max}
-            minDate={min}
-            locale={locale}
-            onChange={handleChange}
-            renderDay={renderDay}
-            selectedDate={dateIso}
-            showTimeZone={showTimeZone}
-            showWeekNumbers={showWeekNumbers}
-          />
-        ) : null}
-      </div>
-    </>
+      ) : null}
+    </div>
   );
 }
 

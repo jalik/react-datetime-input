@@ -20,17 +20,6 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.DateTimeInputCatcher {
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  z-index: 1;
-}
-
 .CalendarWrapper {
   position: absolute;
   z-index: 2;
@@ -122,7 +111,6 @@
 
 .CalendarHeader {
   display: flex;
-  align-items: center;
   margin-bottom: 4px;
 }
 
