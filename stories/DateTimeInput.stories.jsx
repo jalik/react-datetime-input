@@ -18,23 +18,44 @@ function Template(props) {
   // eslint-disable-next-line react/prop-types
   const { value, ...otherProps } = props;
   const [date, setDate] = useState(value);
+  const [fields, setFields] = useState({});
 
   const handleChange = useCallback((event) => {
     setDate(event.target.value);
   }, []);
 
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+    setFields({ date });
+  }, [date]);
+
   return (
-    <>
-      <p>{`Selected date is ${date ? DateTime.fromISO(date).toISO() : null}`}</p>
-      <DateTimeInput
-        format="D tt"
-        name="date"
-        onChange={handleChange}
-        value={date}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...otherProps}
-      />
-    </>
+    <form onSubmit={handleSubmit}>
+      <div style={{ display: 'flex' }}>
+        <div>
+          <div style={{ display: 'flex' }}>
+            <DateTimeInput
+              format="D tt"
+              name="date"
+              onChange={handleChange}
+              value={date}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...otherProps}
+            />
+            <button type="submit">
+              Submit
+            </button>
+          </div>
+        </div>
+        <div style={{ marginLeft: 20 }}>
+          <div>{`Selected date is ${date ? DateTime.fromISO(date).toISO() : null}`}</div>
+          <div>
+            <p>Submitted fields:</p>
+            <pre>{JSON.stringify(fields)}</pre>
+          </div>
+        </div>
+      </div>
+    </form>
   );
 }
 
@@ -49,8 +70,8 @@ const defaultArgs = {
   showWeekNumbers: true,
 };
 
-export const EmtpyDateTimeInputStory = Template.bind({});
-EmtpyDateTimeInputStory.args = { ...defaultArgs };
+export const EmptyDateTimeInputStory = Template.bind({});
+EmptyDateTimeInputStory.args = { ...defaultArgs };
 
 export const FilledDateTimeInputStory = Template.bind({});
 FilledDateTimeInputStory.args = {
@@ -110,7 +131,7 @@ DateTimeInputWithCustomRenderDayStory.args = {
 
 export default {
   title: 'DateTimeInput',
-  component: EmtpyDateTimeInputStory,
+  component: EmptyDateTimeInputStory,
   argTypes: {
     locale: {
       options: ['en-US', 'es', 'fr-FR', 'hi', 'ja', 'fa', 'ru', 'zh'],

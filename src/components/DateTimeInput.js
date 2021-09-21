@@ -65,20 +65,20 @@ function DateTimeInput(props) {
 
   const handleBlur = useCallback((event) => {
     if (onBlur) onBlur(event);
-    if (event.target.value === '') {
+    if (localValue === '') {
       if (value !== '') {
         // Clear value if field is empty.
         onChange({ target: { name, value: null } });
       }
-    } else if (dateTime && dateTime.isValid) {
+    } else if (dateIso && !isValueDisabled(dateIso)) {
       // Update value if local value is valid.
-      onChange({ target: { name, value: dateTime.toISO() } });
+      onChange({ target: { name, value: dateIso } });
     } else {
       // Restore current value if local value is not valid.
       const dt = DateTime.fromISO(value, { locale });
       setLocalValue(dt.isValid ? dt.toFormat(format) : null);
     }
-  }, [dateTime, format, locale, name, onBlur, onChange, value]);
+  }, [dateIso, format, isValueDisabled, localValue, locale, name, onBlur, onChange, value]);
 
   const handleChange = useCallback((dateString) => {
     // Do nothing if field is disabled or if value is disabled.
@@ -110,10 +110,15 @@ function DateTimeInput(props) {
   const handleKeyDown = useCallback((event) => {
     // Close calendar when user press a key.
     setIsCalendarOpen(false);
+
     if (onKeyDown) {
       onKeyDown(event);
     }
-  }, [onKeyDown]);
+    // Validate and update value when "Enter" key pressed.
+    if (event.key === 'Enter' && dateIso && !isValueDisabled(dateIso)) {
+      onChange({ target: { name, value: dateIso } });
+    }
+  }, [dateIso, isValueDisabled, name, onChange, onKeyDown]);
 
   const toggleCalendar = useCallback(() => {
     setIsCalendarOpen((s) => !s);
